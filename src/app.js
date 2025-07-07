@@ -1267,32 +1267,31 @@ function onSearchResultItemClick(file_id, can_preview, file) {
 				'Content-Type': 'application/x-www-form-urlencoded'
 			}
 		})
-		.then(function(response) {
-			if (response.ok) {
-				return response.json();
-			} else {
-				throw new Error('Request failed.');
-			}
-		})
 		.then(function(obj) {
-			var href = `${obj.path}`;
-			var encodedUrl = href.replace(new RegExp('#', 'g'), '%23').replace(new RegExp('\\?', 'g'), '%3F')
-			$('#SearchModelLabel').html(title);
-			btn = `<div class="btn-group">`+ gdrive_btn +`
-				<a href="${encodedUrl}${can_preview ? '?a=view' : ''}" type="button" class="btn btn-success" target="_blank"><i class="fas fa-bolt fa-fw"></i>Index</a>
-				</div>` + close_btn;
-			$('#modal-body-space').html(content);
-			$('#modal-body-space-buttons').html(btn);
-		})
-		.catch(function(error) {
-			console.log(error);
-			$('#SearchModelLabel').html(title);
-			btn = `<div class="btn-group">`+ gdrive_btn +`
-				<a href="/fallback?id=${file_id}&${can_preview ? 'a=view' : ''}" type="button" class="btn btn-success" target="_blank"><i class="fas fa-bolt fa-fw"></i>Index</a>
-				</div>` + close_btn;
-			$('#modal-body-space').html(content);
-			$('#modal-body-space-buttons').html(btn);
-		});
+    var href = `${obj.path}`;
+    var encodedUrl = href.replace(new RegExp('#', 'g'), '%23').replace(new RegExp('\\?', 'g'), '%3F')
+    $('#SearchModelLabel').html(title);
+    btn = `<div class="btn-group">
+        <a href="/fallback?id=${file_id}${can_preview ? '&a=view' : ''}" type="button" class="btn btn-success" target="_blank"><i class="fas fa-bolt fa-fw"></i>Index Link</a>
+        <button type="button" class="btn btn-info copy-url-btn" data-id="${file_id}" data-mimetype="${file_mimetype}">
+            <i class="fas fa-copy"></i> Copy URL
+        </button>
+        </div>` + close_btn;
+    $('#modal-body-space').html(content);
+    $('#modal-body-space-buttons').html(btn);
+})
+.catch(function(error) {
+    console.log(error);
+    $('#SearchModelLabel').html(title);
+    btn = `<div class="btn-group">
+        <a href="/fallback?id=${file_id}${can_preview ? '&a=view' : ''}" type="button" class="btn btn-success" target="_blank"><i class="fas fa-bolt fa-fw"></i>Index Link</a>
+        <button type="button" class="btn btn-info copy-url-btn" data-id="${file_id}" data-mimetype="${file_mimetype}">
+            <i class="fas fa-copy"></i> Copy URL
+        </button>
+        </div>` + close_btn;
+    $('#modal-body-space').html(content);
+    $('#modal-body-space-buttons').html(btn);
+});
 }
 
 function get_file(path, file, callback) {
