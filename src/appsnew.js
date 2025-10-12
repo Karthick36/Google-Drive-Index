@@ -27,7 +27,7 @@ function init() {
         <i class="fa-solid fa-money-check-dollar"></i>Click Here To Payment </a>
         <div class="qrcode card" style="padding: 1rem 1rem 0 1rem;">
         <div style="padding-bottom: 1rem;">Thank you very much ❤</div> 
-        <img alt="Love" src="https://kaceku.onrender.com/static/img/love.png">
+        <img alt="Love" src="https://cdn.jsdelivr.net/gh/Tamizhan-Movies-TM/GD-WEB@master/images/love.png">
 	       </div>
 					</div>
           </div>
@@ -80,7 +80,7 @@ function init() {
       <i class="fa-brands fa-pied-piper-alt"></i> ${new Date().getFullYear()} - <a href="${UI.company_link}" target="_blank">${UI.company_name}</a> with ❤️
 	    </div>
       <div class="col-lg-4 col-md-12">
-      <a href="${UI.contact_link}" title="Please allow us up to 48 hours to process DMCA requests.">DMCA</a> 
+      <a href="https://tm.play-streams.workers.dev//dmca" title="Please allow us up to 48 hours to process DMCA requests.">DMCA</a> 
       ${UI.credit ? '<span>© All Copy Rights Reserved ®™</span>' : ''}
       </div>
        <div class="col-lg-4 col-md-12 text-lg-end">
