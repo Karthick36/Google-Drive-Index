@@ -2478,10 +2478,28 @@ function generateGKYFILEHOSTLink(fileId) {
     // Construct Google Drive view link
     const gdLink = `https://drive.google.com/file/d/${fileId}/view`;
     
-    // Open GKYFILEHOST with the Google Drive URL as parameter
-    window.open(`https://gkyfilehost.online/?url=${encodeURIComponent(gdLink)}`, '_blank');
+    // Copy to clipboard and open GKYFILEHOST
+    navigator.clipboard.writeText(gdLink).then(() => {
+        // Open GKYFILEHOST in new tab
+        window.open('https://gkyfilehost.online', '_blank');
+        
+        // Show success message after a brief delay
+        setTimeout(() => {
+            alert('✅ Google Drive link copied to clipboard!\n\n' +
+                  'GKYFILEHOST has opened in a new tab.\n\n' +
+                  '📌 Just paste (Ctrl+V) the link in the upload form and submit.');
+        }, 500);
+    }).catch((error) => {
+        // Fallback if clipboard API fails (e.g., not HTTPS)
+        console.error('Clipboard error:', error);
+        window.open('https://gkyfilehost.online', '_blank');
+        
+        // Use prompt as fallback to show the link
+        setTimeout(() => {
+            prompt('⚠️ Could not copy automatically.\n\nCopy this Google Drive link and paste it in GKYFILEHOST:', gdLink);
+        }, 500);
+    });
     
-    // Return resolved promise (no need to wait for worker response)
     return Promise.resolve();
 }
 // create a MutationObserver to listen for changes to the DOM
