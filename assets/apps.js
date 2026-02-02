@@ -1,4 +1,3 @@
-
 // Redesigned by telegram.dog/TheFirstSpeedster at https://www.npmjs.com/package/@googledrive/index which was written by someone else, credits are given on Source Page.More actions
 // v2.3.6
 // Initialize the page
@@ -2475,9 +2474,10 @@ function generateGDFlixLink(fileId) {
     });
 }
 // Update the generateGKYFILEHOSTLink function to call the worker endpoint
-function generateGKYFILEHOSTLink(fileId) {
+function generateGKYFILEHOSTLink(fileId, fileName) {
     return new Promise((resolve, reject) => {
         console.log('GKYFILEHOST - Received fileId:', fileId);
+        console.log('GKYFILEHOST - Received fileName:', fileName);
         
         if (!fileId) {
             console.error('GKYFILEHOST - No file ID provided');
@@ -2495,6 +2495,20 @@ function generateGKYFILEHOSTLink(fileId) {
             return;
         }
         
+        // Try to get filename from page if not provided
+        if (!fileName) {
+            try {
+                // Try to find the filename from the page title or heading
+                const titleElement = document.querySelector('h5.card-title');
+                if (titleElement) {
+                    fileName = titleElement.textContent.trim();
+                }
+            } catch (e) {
+                console.log('GKYFILEHOST - Could not extract filename from page');
+            }
+        }
+        
+        console.log('GKYFILEHOST - Final fileName:', fileName || 'download');
         console.log('GKYFILEHOST - Requesting link generation from worker...');
         console.log('GKYFILEHOST - File ID being sent:', fileId);
         
@@ -2502,19 +2516,20 @@ function generateGKYFILEHOSTLink(fileId) {
         const loadingMsg = 'Generating GKYFILEHOST link... Please wait...';
         console.log(loadingMsg);
         
-        // Make request to worker endpoint
-        fetch('/generate-gkyfilehost', {
+        // Make request to worker endpoint (FIXED: Changed from /generate-gkyfilehost to /gkyfilehost)
+        fetch('/gkyfilehost', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                file_id: fileId
+                file_id: fileId,
+                file_name: fileName || 'download'
             })
         })
         .then(response => {
             console.log('GKYFILEHOST - Response status:', response.status);
-            console.log('GKYFILEHOST - Response headers:', response.headers);
+            console.log('GKYFILEHOST - Response OK:', response.ok);
             
             // Try to get the response body even if status is not OK
             return response.json().then(data => {
@@ -2544,8 +2559,8 @@ function generateGKYFILEHOSTLink(fileId) {
                 console.log('GKYFILEHOST - Generated link:', gkyLink);
                 
                 // Validate the link format
-                if (!gkyLink.includes('gkyfilehost.site')) {
-                    console.warn('GKYFILEHOST - Warning: Link does not contain gkyfilehost.site domain');
+                if (!gkyLink.includes('gkyfilehost')) {
+                    console.warn('GKYFILEHOST - Warning: Link does not contain gkyfilehost domain');
                 }
                 
                 // Open the GKYFILEHOST link directly in a new tab
@@ -2568,8 +2583,13 @@ function generateGKYFILEHOSTLink(fileId) {
             // Show user-friendly error message
             let userMessage = 'Failed to generate GKYFILEHOST link';
             
-            if (error.message.includes('HTTP error! status: 500')) {
-                userMessage += '\n\nServer error (500). Please check:\n' +
+            if (error.message.includes('Failed to login')) {
+                userMessage += '\n\n⚠️ Login to GKYFILEHOST failed.\n\nPossible solutions:\n' +
+                             '1. Check your GKYFILEHOST account credentials\n' +
+                             '2. Make sure your account is active\n' +
+                             '3. Check Cloudflare Worker logs for details';
+            } else if (error.message.includes('HTTP error! status: 500')) {
+                userMessage += '\n\nServer error (500).\n\nPlease check:\n' +
                              '1. Cloudflare Worker logs for details\n' +
                              '2. GKYFILEHOST credentials are correct\n' +
                              '3. The file ID is valid';
@@ -2578,7 +2598,7 @@ function generateGKYFILEHOSTLink(fileId) {
             } else if (error.message.includes('Failed to fetch')) {
                 userMessage += '\n\nNetwork error. Check your internet connection.';
             } else {
-                userMessage += ': ' + error.message;
+                userMessage += ':\n\n' + error.message;
             }
             
             alert(userMessage);
