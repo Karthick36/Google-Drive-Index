@@ -2481,6 +2481,7 @@ function generateGKYFILEHOSTLink(fileId) {
         
         if (!fileId) {
             console.error('GKYFILEHOST - No file ID provided');
+            alert('Error: No file ID provided');
             reject(new Error('No file ID provided'));
             return;
         }
@@ -2489,11 +2490,17 @@ function generateGKYFILEHOSTLink(fileId) {
         
         if (fileId === '') {
             console.error('GKYFILEHOST - Empty file ID');
+            alert('Error: Empty file ID');
             reject(new Error('Empty file ID'));
             return;
         }
         
         console.log('GKYFILEHOST - Requesting link generation from worker...');
+        console.log('GKYFILEHOST - File ID being sent:', fileId);
+        
+        // Show a loading indicator (you can customize this)
+        const loadingMsg = 'Generating GKYFILEHOST link... Please wait...';
+        console.log(loadingMsg);
         
         // Make request to worker endpoint
         fetch('/generate-gkyfilehost', {
@@ -2507,28 +2514,74 @@ function generateGKYFILEHOSTLink(fileId) {
         })
         .then(response => {
             console.log('GKYFILEHOST - Response status:', response.status);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
+            console.log('GKYFILEHOST - Response headers:', response.headers);
+            
+            // Try to get the response body even if status is not OK
+            return response.json().then(data => {
+                return { status: response.status, ok: response.ok, data: data };
+            }).catch(() => {
+                // If JSON parsing fails, try to get text
+                return response.text().then(text => {
+                    return { status: response.status, ok: response.ok, data: { error: text } };
+                });
+            });
         })
-        .then(data => {
-            console.log('GKYFILEHOST - Worker response:', data);
+        .then(result => {
+            console.log('GKYFILEHOST - Full response:', result);
+            
+            if (!result.ok) {
+                // Show specific error from server
+                const errorMsg = result.data.error || result.data.details || `HTTP error! status: ${result.status}`;
+                console.error('GKYFILEHOST - Server error:', errorMsg);
+                throw new Error(errorMsg);
+            }
+            
+            const data = result.data;
+            console.log('GKYFILEHOST - Worker response data:', data);
             
             if (data.success && (data.link || data.gkyfilehost_link)) {
                 const gkyLink = data.link || data.gkyfilehost_link;
                 console.log('GKYFILEHOST - Generated link:', gkyLink);
                 
+                // Validate the link format
+                if (!gkyLink.includes('gkyfilehost.site')) {
+                    console.warn('GKYFILEHOST - Warning: Link does not contain gkyfilehost.site domain');
+                }
+                
                 // Open the GKYFILEHOST link directly in a new tab
                 window.open(gkyLink, '_blank');
+                
+                // Show success message
+                console.log('✅ GKYFILEHOST link generated successfully!');
+                
                 resolve(gkyLink);
             } else {
-                reject(new Error(data.error || 'Failed to generate GKYFILEHOST link'));
+                const errorMsg = data.error || 'Failed to generate GKYFILEHOST link - no link in response';
+                console.error('GKYFILEHOST - Error from server:', errorMsg);
+                throw new Error(errorMsg);
             }
         })
         .catch(error => {
             console.error('GKYFILEHOST Error:', error);
-            alert('Failed to generate GKYFILEHOST link: ' + error.message);
+            console.error('GKYFILEHOST Error stack:', error.stack);
+            
+            // Show user-friendly error message
+            let userMessage = 'Failed to generate GKYFILEHOST link';
+            
+            if (error.message.includes('HTTP error! status: 500')) {
+                userMessage += '\n\nServer error (500). Please check:\n' +
+                             '1. Cloudflare Worker logs for details\n' +
+                             '2. GKYFILEHOST credentials are correct\n' +
+                             '3. The file ID is valid';
+            } else if (error.message.includes('HTTP error! status: 400')) {
+                userMessage += '\n\nBad request (400). The file ID might be invalid.';
+            } else if (error.message.includes('Failed to fetch')) {
+                userMessage += '\n\nNetwork error. Check your internet connection.';
+            } else {
+                userMessage += ': ' + error.message;
+            }
+            
+            alert(userMessage);
             reject(error);
         });
     });
