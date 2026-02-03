@@ -1,3 +1,4 @@
+
 // Redesigned by telegram.dog/TheFirstSpeedster at https://www.npmjs.com/package/@googledrive/index which was written by someone else, credits are given on Source Page.More actions
 // v2.3.6
 // Initialize the page
@@ -1505,32 +1506,25 @@ function file_others(name, encoded_name, size, poster, url, mimeType, md5Checksu
 					</tbody>
 				</table>
        ${UI.disable_video_download ? `` : `
-  <div class="col-md-12">
-    <div class="text-center">
-      <p class="mb-2">🚀&nbsp;𝔽𝕒𝕤𝕥&nbsp;&nbsp;𝔻𝕠𝕨𝕟𝕝𝕠𝕒𝕕&nbsp;&nbsp;𝕃𝕚𝕟𝕜𝕤&nbsp;&nbsp;<i class="fa-solid fa-cloud-arrow-down"></i></p>
-      <div class="d-flex flex-wrap gap-2 justify-content-center"> 
-        ${UI.display_drive_link ? ` 
-       <button class="btn btn-secondary d-flex align-items-center gap-2 gdflix-btn" 
-      data-file-id="${file_id}" type="button">${gdrive_icon}𝗚𝗗𝗙𝗹𝗶𝘅</button>` : ``}
-      
-      ${UI.display_drive_link ? ` 
-       <button class="btn btn-warning d-flex align-items-center gap-2 gkyfilehost-btn" 
-      data-file-id="${file_id}" type="button">
-      <i class="fa-solid fa-cloud-arrow-up"></i>𝗚𝗞𝗬𝗙𝗜𝗟𝗘𝗛𝗢𝗦𝗧</button>` : ``}
-       
-      <div class="btn-group">
-        <a href="${url}" type="button" class="btn btn-success">
-        <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱 
-         </a>
-          <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" 
-                  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="sr-only"></span>
-          </button>
-           <div class="dropdown-menu">
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Free)</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.adm.lite/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Lite)</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.plus/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM+ (Plus)</a>
-          </div>
+      <div class="col-md-12">
+        <div class="text-center">
+          <p class="mb-2">🚀&nbsp;𝔽𝕒𝕤𝕥&nbsp;&nbsp;𝔻𝕠𝕨𝕟𝕝𝕠𝕒𝕕&nbsp;&nbsp;𝔾𝔻𝔽𝕝𝕚𝕩&nbsp;&nbsp;𝕃𝕚𝕟𝕜&nbsp;&nbsp;<i class="fa-solid fa-cloud-arrow-down"></i></p>
+          <div class="btn-group text-center"> 
+            ${UI.display_drive_link ? ` 
+           <button class="btn btn-secondary d-flex align-items-center gap-2 gdflix-btn" 
+          data-file-id="${file_id}" type="button">${gdrive_icon}𝗚𝗗𝗙𝗹𝗶𝘅 𝗟𝗶𝗻𝗸</button>` : ``} 
+          <a href="${url}" type="button" class="btn btn-success">
+          <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱 
+           </a>
+            <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" 
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only"></span>
+            </button>
+             <div class="dropdown-menu">
+							<a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Free)</a>
+							<a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.adm.lite/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Lite)</a>
+							<a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.plus/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM+ (Plus)</a>
+						</div>
           </div>
         </div> 
       </div>`}
@@ -1566,42 +1560,6 @@ function file_others(name, encoded_name, size, poster, url, mimeType, md5Checksu
             console.error('GDFlix error:', error);
         });
     });
-
-  // GKYFILEHOST button click handler
-$(document).on('click', '.gkyfilehost-btn', function() {
-    const fileId = $(this).data('file-id');
-    const button = $(this);
-    
-    console.log('GKYFILEHOST Button clicked, fileId:', fileId);
-    
-    if (!fileId) {
-        alert('Error: No file ID found');
-        return;
-    }
-    
-    // Show loading state
-    const originalHtml = button.html();
-    button.prop('disabled', true)
-          .html('<i class="fas fa-spinner fa-spin fa-fw"></i> Uploading...');
-    
-    // Call the GKYFILEHOST function
-    generateGKYFILEHOSTLink(fileId)
-        .then((link) => {
-            // Show success message
-            button.html('<i class="fas fa-check fa-fw"></i> Success!');
-            setTimeout(() => {
-                button.prop('disabled', false).html(originalHtml);
-            }, 2000);
-        })
-        .catch((error) => {
-            // Show error and reset
-            button.html('<i class="fas fa-times fa-fw"></i> Failed');
-            setTimeout(() => {
-                button.prop('disabled', false).html(originalHtml);
-            }, 2000);
-            console.error('GKYFILEHOST error:', error);
-        });
-     });
 	
 	// Rest of the function remains the same...
 	$('#SearchModelLabel').html('<i class="fa-regular fa-eye fa-fw"></i>Preview');
@@ -1695,32 +1653,25 @@ function file_code(name, encoded_name, size, bytes, poster, url, mimeType, md5Ch
 						</tr>
 					</table>
        ${UI.disable_video_download ? `` : `
-  <div class="col-md-12">
-    <div class="text-center">
-      <p class="mb-2">🚀&nbsp;𝔽𝕒𝕤𝕥&nbsp;&nbsp;𝔻𝕠𝕨𝕟𝕝𝕠𝕒𝕕&nbsp;&nbsp;𝕃𝕚𝕟𝕜𝕤&nbsp;&nbsp;<i class="fa-solid fa-cloud-arrow-down"></i></p>
-      <div class="d-flex flex-wrap gap-2 justify-content-center"> 
-        ${UI.display_drive_link ? ` 
-       <button class="btn btn-secondary d-flex align-items-center gap-2 gdflix-btn" 
-      data-file-id="${file_id}" type="button">${gdrive_icon}𝗚𝗗𝗙𝗹𝗶𝘅</button>` : ``}
-      
-      ${UI.display_drive_link ? ` 
-       <button class="btn btn-warning d-flex align-items-center gap-2 gkyfilehost-btn" 
-      data-file-id="${file_id}" type="button">
-      <i class="fa-solid fa-cloud-arrow-up"></i>𝗚𝗞𝗬𝗙𝗜𝗟𝗘𝗛𝗢𝗦𝗧</button>` : ``}
-       
-      <div class="btn-group">
-        <a href="${url}" type="button" class="btn btn-success">
-        <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱 
-         </a>
-          <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" 
-                  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="sr-only"></span>
-          </button>
-           <div class="dropdown-menu">
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Free)</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.adm.lite/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Lite)</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.plus/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM+ (Plus)</a>
-          </div>
+      <div class="col-md-12">
+        <div class="text-center">
+          <p class="mb-2">🚀&nbsp;𝔽𝕒𝕤𝕥&nbsp;&nbsp;𝔻𝕠𝕨𝕟𝕝𝕠𝕒𝕕&nbsp;&nbsp;𝔾𝔻𝔽𝕝𝕚𝕩&nbsp;&nbsp;𝕃𝕚𝕟𝕜&nbsp;&nbsp;<i class="fa-solid fa-cloud-arrow-down"></i></p>
+          <div class="btn-group text-center"> 
+            ${UI.display_drive_link ? ` 
+           <button class="btn btn-secondary d-flex align-items-center gap-2 gdflix-btn" 
+          data-file-id="${file_id}" type="button">${gdrive_icon}𝗚𝗗𝗙𝗹𝗶𝘅 𝗟𝗶𝗻𝗸</button>` : ``} 
+          <a href="${url}" type="button" class="btn btn-success">
+          <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱 
+           </a>
+            <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" 
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only"></span>
+            </button>
+            <div class="dropdown-menu">
+							<a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Free)</a>
+							<a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.adm.lite/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Lite)</a>
+							<a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.plus/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM+ (Plus)</a>
+					 </div>
           </div>
         </div> 
       </div>`}
@@ -1756,42 +1707,6 @@ function file_code(name, encoded_name, size, bytes, poster, url, mimeType, md5Ch
             console.error('GDFlix error:', error);
         });
     });
-
-	// GKYFILEHOST button click handler
-$(document).on('click', '.gkyfilehost-btn', function() {
-    const fileId = $(this).data('file-id');
-    const button = $(this);
-    
-    console.log('GKYFILEHOST Button clicked, fileId:', fileId);
-    
-    if (!fileId) {
-        alert('Error: No file ID found');
-        return;
-    }
-    
-    // Show loading state
-    const originalHtml = button.html();
-    button.prop('disabled', true)
-          .html('<i class="fas fa-spinner fa-spin fa-fw"></i> Uploading...');
-    
-    // Call the GKYFILEHOST function
-    generateGKYFILEHOSTLink(fileId)
-        .then((link) => {
-            // Show success message
-            button.html('<i class="fas fa-check fa-fw"></i> Success!');
-            setTimeout(() => {
-                button.prop('disabled', false).html(originalHtml);
-            }, 2000);
-        })
-        .catch((error) => {
-            // Show error and reset
-            button.html('<i class="fas fa-times fa-fw"></i> Failed');
-            setTimeout(() => {
-                button.prop('disabled', false).html(originalHtml);
-            }, 2000);
-            console.error('GKYFILEHOST error:', error);
-        });
-});
 	
 	// Rest of the function remains the same...
 	$('#SearchModelLabel').html('<i class="fa-regular fa-eye fa-fw"></i>Preview');
@@ -1931,28 +1846,21 @@ function file_video(name, encoded_name, size, poster, url, mimeType, md5Checksum
           </tbody>
         </table>
        ${UI.disable_video_download ? `` : `
-  <div class="col-md-12">
-    <div class="text-center">
-      <p class="mb-2">🚀&nbsp;𝔽𝕒𝕤𝕥&nbsp;&nbsp;𝔻𝕠𝕨𝕟𝕝𝕠𝕒𝕕&nbsp;&nbsp;𝕃𝕚𝕟𝕜𝕤&nbsp;&nbsp;<i class="fa-solid fa-cloud-arrow-down"></i></p>
-      <div class="d-flex flex-wrap gap-2 justify-content-center"> 
-        ${UI.display_drive_link ? ` 
-       <button class="btn btn-secondary d-flex align-items-center gap-2 gdflix-btn" 
-      data-file-id="${file_id}" type="button">${gdrive_icon}𝗚𝗗𝗙𝗹𝗶𝘅</button>` : ``}
-      
-      ${UI.display_drive_link ? ` 
-       <button class="btn btn-warning d-flex align-items-center gap-2 gkyfilehost-btn" 
-      data-file-id="${file_id}" type="button">
-      <i class="fa-solid fa-cloud-arrow-up"></i>𝗚𝗞𝗬𝗙𝗜𝗟𝗘𝗛𝗢𝗦𝗧</button>` : ``}
-       
-      <div class="btn-group">
-        <a href="${url}" type="button" class="btn btn-success">
-        <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱 
-         </a>
-          <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" 
-                  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="sr-only"></span>
-          </button>
-           <div class="dropdown-menu">
+      <div class="col-md-12">
+        <div class="text-center">
+          <p class="mb-2">🚀&nbsp;𝔽𝕒𝕤𝕥&nbsp;&nbsp;𝔻𝕠𝕨𝕟𝕝𝕠𝕒𝕕&nbsp;&nbsp;𝔾𝔻𝔽𝕝𝕚𝕩&nbsp;&nbsp;𝕃𝕚𝕟𝕜&nbsp;&nbsp;<i class="fa-solid fa-cloud-arrow-down"></i></p>
+          <div class="btn-group text-center"> 
+            ${UI.display_drive_link ? ` 
+           <button class="btn btn-secondary d-flex align-items-center gap-2 gdflix-btn" 
+          data-file-id="${file_id}" type="button">${gdrive_icon}𝗚𝗗𝗙𝗹𝗶𝘅 𝗟𝗶𝗻𝗸</button>` : ``} 
+          <a href="${url}" type="button" class="btn btn-success">
+          <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱 
+           </a>
+            <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" 
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only"></span>
+            </button>
+            <div class="dropdown-menu">
               <a class="dropdown-item" href="intent:${url}#Intent;package=com.playit.videoplayer;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name};end">${playit_icon} Playit</a>
               <a class="dropdown-item" href="intent:${url}#Intent;package=video.player.videoplayer;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name};end">${xplayer_icon} XPlayer</a>
               <a class="dropdown-item" href="intent:${url}#Intent;package=com.mxtech.videoplayer.ad;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name};end">${mxplayer_icon} MX Player</a>
@@ -1994,42 +1902,6 @@ function file_video(name, encoded_name, size, poster, url, mimeType, md5Checksum
             console.error('GDFlix error:', error);
         });
     });
-
-	// GKYFILEHOST button click handler
-$(document).on('click', '.gkyfilehost-btn', function() {
-    const fileId = $(this).data('file-id');
-    const button = $(this);
-    
-    console.log('GKYFILEHOST Button clicked, fileId:', fileId);
-    
-    if (!fileId) {
-        alert('Error: No file ID found');
-        return;
-    }
-    
-    // Show loading state
-    const originalHtml = button.html();
-    button.prop('disabled', true)
-          .html('<i class="fas fa-spinner fa-spin fa-fw"></i> Uploading...');
-    
-    // Call the GKYFILEHOST function
-    generateGKYFILEHOSTLink(fileId)
-        .then((link) => {
-            // Show success message
-            button.html('<i class="fas fa-check fa-fw"></i> Success!');
-            setTimeout(() => {
-                button.prop('disabled', false).html(originalHtml);
-            }, 2000);
-        })
-        .catch((error) => {
-            // Show error and reset
-            button.html('<i class="fas fa-times fa-fw"></i> Failed');
-            setTimeout(() => {
-                button.prop('disabled', false).html(originalHtml);
-            }, 2000);
-            console.error('GKYFILEHOST error:', error);
-        });
-});
 
   
   // Load Video.js and initialize the player
@@ -2473,139 +2345,7 @@ function generateGDFlixLink(fileId) {
         });
     });
 }
-// Update the generateGKYFILEHOSTLink function to call the worker endpoint
-function generateGKYFILEHOSTLink(fileId, fileName) {
-    return new Promise((resolve, reject) => {
-        console.log('GKYFILEHOST - Received fileId:', fileId);
-        console.log('GKYFILEHOST - Received fileName:', fileName);
-        
-        if (!fileId) {
-            console.error('GKYFILEHOST - No file ID provided');
-            alert('Error: No file ID provided');
-            reject(new Error('No file ID provided'));
-            return;
-        }
-        
-        fileId = String(fileId).trim();
-        
-        if (fileId === '') {
-            console.error('GKYFILEHOST - Empty file ID');
-            alert('Error: Empty file ID');
-            reject(new Error('Empty file ID'));
-            return;
-        }
-        
-        // Try to get filename from page if not provided
-        if (!fileName) {
-            try {
-                // Try to find the filename from the page title or heading
-                const titleElement = document.querySelector('h5.card-title');
-                if (titleElement) {
-                    fileName = titleElement.textContent.trim();
-                }
-            } catch (e) {
-                console.log('GKYFILEHOST - Could not extract filename from page');
-            }
-        }
-        
-        console.log('GKYFILEHOST - Final fileName:', fileName || 'download');
-        console.log('GKYFILEHOST - Requesting link generation from worker...');
-        console.log('GKYFILEHOST - File ID being sent:', fileId);
-        
-        // Show a loading indicator (you can customize this)
-        const loadingMsg = 'Generating GKYFILEHOST link... Please wait...';
-        console.log(loadingMsg);
-        
-        // Make request to worker endpoint (FIXED: Changed from /generate-gkyfilehost to /gkyfilehost)
-        fetch('/gkyfilehost', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                file_id: fileId,
-                file_name: fileName || 'download'
-            })
-        })
-        .then(response => {
-            console.log('GKYFILEHOST - Response status:', response.status);
-            console.log('GKYFILEHOST - Response OK:', response.ok);
-            
-            // Try to get the response body even if status is not OK
-            return response.json().then(data => {
-                return { status: response.status, ok: response.ok, data: data };
-            }).catch(() => {
-                // If JSON parsing fails, try to get text
-                return response.text().then(text => {
-                    return { status: response.status, ok: response.ok, data: { error: text } };
-                });
-            });
-        })
-        .then(result => {
-            console.log('GKYFILEHOST - Full response:', result);
-            
-            if (!result.ok) {
-                // Show specific error from server
-                const errorMsg = result.data.error || result.data.details || `HTTP error! status: ${result.status}`;
-                console.error('GKYFILEHOST - Server error:', errorMsg);
-                throw new Error(errorMsg);
-            }
-            
-            const data = result.data;
-            console.log('GKYFILEHOST - Worker response data:', data);
-            
-            if (data.success && (data.link || data.gkyfilehost_link)) {
-                const gkyLink = data.link || data.gkyfilehost_link;
-                console.log('GKYFILEHOST - Generated link:', gkyLink);
-                
-                // Validate the link format
-                if (!gkyLink.includes('gkyfilehost')) {
-                    console.warn('GKYFILEHOST - Warning: Link does not contain gkyfilehost domain');
-                }
-                
-                // Open the GKYFILEHOST link directly in a new tab
-                window.open(gkyLink, '_blank');
-                
-                // Show success message
-                console.log('✅ GKYFILEHOST link generated successfully!');
-                
-                resolve(gkyLink);
-            } else {
-                const errorMsg = data.error || 'Failed to generate GKYFILEHOST link - no link in response';
-                console.error('GKYFILEHOST - Error from server:', errorMsg);
-                throw new Error(errorMsg);
-            }
-        })
-        .catch(error => {
-            console.error('GKYFILEHOST Error:', error);
-            console.error('GKYFILEHOST Error stack:', error.stack);
-            
-            // Show user-friendly error message
-            let userMessage = 'Failed to generate GKYFILEHOST link';
-            
-            if (error.message.includes('Failed to login')) {
-                userMessage += '\n\n⚠️ Login to GKYFILEHOST failed.\n\nPossible solutions:\n' +
-                             '1. Check your GKYFILEHOST account credentials\n' +
-                             '2. Make sure your account is active\n' +
-                             '3. Check Cloudflare Worker logs for details';
-            } else if (error.message.includes('HTTP error! status: 500')) {
-                userMessage += '\n\nServer error (500).\n\nPlease check:\n' +
-                             '1. Cloudflare Worker logs for details\n' +
-                             '2. GKYFILEHOST credentials are correct\n' +
-                             '3. The file ID is valid';
-            } else if (error.message.includes('HTTP error! status: 400')) {
-                userMessage += '\n\nBad request (400). The file ID might be invalid.';
-            } else if (error.message.includes('Failed to fetch')) {
-                userMessage += '\n\nNetwork error. Check your internet connection.';
-            } else {
-                userMessage += ':\n\n' + error.message;
-            }
-            
-            alert(userMessage);
-            reject(error);
-        });
-    });
-}
+
 // create a MutationObserver to listen for changes to the DOM
 const observer = new MutationObserver(() => {
 	updateCheckboxes();
