@@ -44,7 +44,7 @@ document.siteName = $('title').html();
       </div>
        <div class="col-lg-4 col-md-12 text-lg-end">
         <p>
-        <a href="#"><img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2F` + window.location.host + `&label=hits&icon=bar-chart-fill&color=%23198754"/></a>
+        <a href="#"><img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2F` + window.location.host + `&label=hits&icon=bar-chart-fill&color=%23198754"/></button>
         </p>
       </div>
 	  <script>
@@ -183,20 +183,20 @@ function nav(path) {
 	var cur = window.current_drive_order || 0;
 	html += `<nav class="navbar navbar-expand-lg${UI.fixed_header ?' fixed-top': ''} ${UI.header_style_class} container">
     <div class="container-fluid mx-2">
-  <a class="navbar-brand d-flex align-items-center gap-2" href="/">${UI.logo_image ? '<img border="0" alt="'+UI.company_name+'" src="'+UI.logo_link_name+'" height="'+UI.logo_height+'" width="'+UI.logo_width+'">'+UI.siteName : UI.logo_link_name}</a>
+  <a class="navbar-brand d-flex align-items-center gap-2" href="/">${UI.logo_image ? '<img border="0" alt="'+UI.company_name+'" src="'+UI.logo_link_name+'" height="'+UI.logo_height+'" width="'+UI.logo_width+'">'+UI.siteName : UI.logo_link_name}</button>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <li class="nav-item">
-        <a class="nav-link" href="/${cur}:/"><i class="fas fa-home fa-fw"></i>${UI.nav_link_1}</a>
+        <a class="nav-link" href="/${cur}:/"><i class="fas fa-home fa-fw"></i>${UI.nav_link_1}</button>
       </li>`;
 	var names = window.drive_names;
 	var drive_name = window.drive_names[cur];
 
 	html += `<li class="nav-item">
-    <a class="nav-link" href="${UI.contact_link}" target="_blank"><i class="fas fa-paper-plane fa-fw"></i>${UI.nav_link_4}</a>
+    <a class="nav-link" href="${UI.contact_link}" target="_blank"><i class="fas fa-paper-plane fa-fw"></i>${UI.nav_link_4}</button>
   </li>${UI.show_logout_button ?'<li class="nav-item"><a class="nav-link" href="/logout"><i class="fa-solid fa-arrow-right-from-bracket fa-fw"></i>Logout</a></li>': ''}`;
 
 	var search_text = model.is_search_page ? (model.q || '') : '';
@@ -269,7 +269,7 @@ function requestListPath(path, params, resultCallback, authErrorCallback, retrie
 					<p>The requested URL was not found on this server. That’s all we know.</p>
 					<div class="card-text text-center">
 					  <div class="btn-group text-center">
-						<a href="/" type="button" class="btn btn-success">Homepage</a>
+						<a href="/" type="button" class="btn btn-success">Homepage</button>
 					  </div>
 					</div><br>
 				  </div>`;
@@ -1206,7 +1206,7 @@ function onSearchResultItemClick(file_id, can_preview, file) {
     const fileUrl = `/fallback?id=${file_id}${can_preview ? '&a=view' : ''}`;
     
     btn = `<div class="btn-group">
-        <a href="${fileUrl}" type="button" class="btn btn-primary" target="_blank"><i class="fas fa-bolt fa-fw"></i>Instant Link</a>
+        <a href="${fileUrl}" type="button" class="btn btn-primary" target="_blank"><i class="fas fa-bolt fa-fw"></i>Instant Link</button>
         <button type="button" class="btn btn-info copy-url-btn" data-url="${fileUrl}">
             <i class="fas fa-copy fa-fw"></i> Copy URL
         </button>
@@ -1223,7 +1223,7 @@ function onSearchResultItemClick(file_id, can_preview, file) {
     const fileUrl = `/fallback?id=${file_id}${can_preview ? '&a=view' : ''}`;
     
     btn = `<div class="btn-group">
-        <a href="${fileUrl}" type="button" class="btn btn-primary" target="_blank"><i class="fas fa-bolt fa-fw"></i>Instant Link</a>
+        <a href="${fileUrl}" type="button" class="btn btn-primary" target="_blank"><i class="fas fa-bolt fa-fw"></i>Instant Link</button>
         <button type="button" class="btn btn-info copy-url-btn" data-url="${fileUrl}">
             <i class="fas fa-copy fa-fw"></i> Copy URL
         </button>
@@ -1333,7 +1333,7 @@ async function fallback(id, type) {
 					<div class="card-body text-center">
 						<div class="${UI.file_view_alert_class}" id="file_details" role="alert"><b>404.</b> That’s an error. ` + error + `</div>
 						<p>The requested URL was not found on this server. That’s all we know.</p>
-						<a href="/" type="button" class="btn btn-success"><i class="fas fa-home fa-fw"></i>Home</a>
+						<a href="/" type="button" class="btn btn-success"><i class="fas fa-home fa-fw"></i>Home</button>
 					</div>
 				</div>`;
 				$("#content").html(content);
@@ -1403,7 +1403,7 @@ async function file(path) {
 				<div class="card-body text-center">
 					<div class="${UI.file_view_alert_class}" id="file_details" role="alert"><b>404.</b> That’s an error. ` + error + `</div>
 					<p>The requested URL was not found on this server. That’s all we know.</p>
-					<a href="/" type="button" class="btn btn-success"><i class="fas fa-home fa-fw"></i>Home</a>
+					<a href="/" type="button" class="btn btn-success"><i class="fas fa-home fa-fw"></i>Home</button>
 				</div>
 			</div>`;
 			$("#content").html(content);
@@ -1449,7 +1449,7 @@ function file_others(name, encoded_name, size, poster, url, mimeType, md5Checksu
 					<div id="overlay" class="overlay border border-dark rounded d-flex justify-content-center align-items-center flex-column gap-3 pt-4 pb-4" style="--bs-border-opacity: .5; opacity: 0;">
 						<span><i class="fas fa-search-plus fa-2xl fa-fw"></i></span>
 						<span>Preview</span>
-						<a href="#" class="stretched-link" data-bs-toggle="modal" data-bs-target="#SearchModel" title="Thumbnail of ${name}"></a>
+						<a href="#" class="stretched-link" data-bs-toggle="modal" data-bs-target="#SearchModel" title="Thumbnail of ${name}"></button>
 					</div>
 				</div>` : `
 				<div class="h-100 border border-dark rounded d-flex justify-content-center align-items-center flex-column gap-3 pt-4 pb-4" style="--bs-border-opacity: .5;">
@@ -1506,17 +1506,17 @@ function file_others(name, encoded_name, size, poster, url, mimeType, md5Checksu
         ${UI.display_drive_link ? ` 
        <button class="btn btn-secondary d-flex align-items-center gap-2 gdflix-btn" 
       data-file-id="${file_id}" type="button">${gdrive_icon}𝗚𝗗𝗙𝗹𝗶𝘅 𝗟𝗶𝗻𝗸</button>` : ``}
-        <a type="button" class="btn btn-success download-via-gkyfilehost" data-file-id="${file_id}">
+        <button type="button" class="btn btn-success download-via-pixeldrain" data-file-id="${file_id}">
         <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱
-         </a>
+         </button>
           <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" 
                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only"></span>
           </button>
            <div class="dropdown-menu">
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Free)</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.adm.lite/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Lite)</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.plus/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM+ (Plus)</a>
+              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Free)</button>
+              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.adm.lite/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Lite)</button>
+              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.plus/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM+ (Plus)</button>
           </div>
           </div>
         </div> 
@@ -1637,7 +1637,7 @@ function file_code(name, encoded_name, size, bytes, poster, url, mimeType, md5Ch
 					<div id="overlay" class="overlay border border-dark rounded d-flex justify-content-center align-items-center flex-column gap-3 pt-4 pb-4" style="--bs-border-opacity: .5; opacity: 0;">
 						<span><i class="fas fa-search-plus fa-2xl fa-fw"></i></span>
 						<span>Preview</span>
-						<a href="#" class="stretched-link" data-bs-toggle="modal" data-bs-target="#SearchModel" title="Thumbnail of ${name}"></a>
+						<a href="#" class="stretched-link" data-bs-toggle="modal" data-bs-target="#SearchModel" title="Thumbnail of ${name}"></button>
 					</div>` : ``}
 				</div>
 			</div>
@@ -1689,18 +1689,18 @@ function file_code(name, encoded_name, size, bytes, poster, url, mimeType, md5Ch
         ${UI.display_drive_link ? ` 
        <button class="btn btn-secondary d-flex align-items-center gap-2 gdflix-btn" 
       data-file-id="${file_id}" type="button">${gdrive_icon}𝗚𝗗𝗙𝗹𝗶𝘅 𝗟𝗶𝗻𝗸</button>` : ``}
-        <a type="button" class="btn btn-success download-via-gkyfilehost" data-file-id="${file_id}">
+        <button type="button" class="btn btn-success download-via-pixeldrain" data-file-id="${file_id}">
         <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱
-         </a>
+         </button>
           <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" 
                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only"></span>
           </button>
            <div class="dropdown-menu">
-              <a class="dropdown-item" href="${url}" target="_blank">Direct Download</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Free)</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.adm.lite/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Lite)</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.plus/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM+ (Plus)</a>
+              <a class="dropdown-item" href="${url}" target="_blank">Direct Download</button>
+              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Free)</button>
+              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.adm.lite/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Lite)</button>
+              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.plus/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM+ (Plus)</button>
           </div>
           </div>
         </div> 
@@ -1919,19 +1919,19 @@ function file_video(name, encoded_name, size, poster, url, mimeType, md5Checksum
         ${UI.display_drive_link ? ` 
        <button class="btn btn-secondary d-flex align-items-center gap-2 gdflix-btn" 
       data-file-id="${file_id}" type="button">${gdrive_icon}𝗚𝗗𝗙𝗹𝗶𝘅 𝗟𝗶𝗻𝗸</button>` : ``}
-        <a type="button" class="btn btn-success download-via-gkyfilehost" data-file-id="${file_id}">
+        <button type="button" class="btn btn-success download-via-pixeldrain" data-file-id="${file_id}">
         <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱
-         </a>
+         </button>
           <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" 
                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only"></span>
           </button>
            <div class="dropdown-menu">
-              <a class="dropdown-item" href="intent:${url}#Intent;package=com.playit.videoplayer;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name};end">${playit_icon} Playit</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;package=video.player.videoplayer;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name};end">${xplayer_icon} XPlayer</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;package=com.mxtech.videoplayer.ad;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name};end">${mxplayer_icon} MX Player</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;package=org.videolan.vlc;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name};end">${vlc_icon} VLC Player</a>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">${new_download_icon} 1DM (Free)</a>
+              <a class="dropdown-item" href="intent:${url}#Intent;package=com.playit.videoplayer;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name};end">${playit_icon} Playit</button>
+              <a class="dropdown-item" href="intent:${url}#Intent;package=video.player.videoplayer;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name};end">${xplayer_icon} XPlayer</button>
+              <a class="dropdown-item" href="intent:${url}#Intent;package=com.mxtech.videoplayer.ad;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name};end">${mxplayer_icon} MX Player</button>
+              <a class="dropdown-item" href="intent:${url}#Intent;package=org.videolan.vlc;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name};end">${vlc_icon} VLC Player</button>
+              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">${new_download_icon} 1DM (Free)</button>
             </div>
           </div>
         </div> 
@@ -2117,17 +2117,17 @@ function file_audio(name, encoded_name, size, url, mimeType, md5Checksum, create
                         <div class="btn-group text-center">
                             <a href="${url}" type="button" class="btn btn-success">
                                 <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱
-                            </a>
+                            </button>
                             <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" 
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="sr-only"></span>
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="intent:${encoded_url}#Intent;package=com.playit.videoplayer;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name_safe};end">Playit</a>
-                                <a class="dropdown-item" href="intent:${encoded_url}#Intent;package=video.player.videoplayer;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name_safe};end">XPlayer</a>
-                                <a class="dropdown-item" href="intent:${encoded_url}#Intent;package=com.mxtech.videoplayer.ad;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name_safe};end">MX Player</a>
-                                <a class="dropdown-item" href="intent:${encoded_url}#Intent;package=org.videolan.vlc;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name_safe};end">VLC Player</a>
-                                <a class="dropdown-item" href="intent:${encoded_url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name_safe};end">1DM (Free)</a>
+                                <a class="dropdown-item" href="intent:${encoded_url}#Intent;package=com.playit.videoplayer;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name_safe};end">Playit</button>
+                                <a class="dropdown-item" href="intent:${encoded_url}#Intent;package=video.player.videoplayer;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name_safe};end">XPlayer</button>
+                                <a class="dropdown-item" href="intent:${encoded_url}#Intent;package=com.mxtech.videoplayer.ad;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name_safe};end">MX Player</button>
+                                <a class="dropdown-item" href="intent:${encoded_url}#Intent;package=org.videolan.vlc;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name_safe};end">VLC Player</button>
+                                <a class="dropdown-item" href="intent:${encoded_url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name_safe};end">1DM (Free)</button>
                             </div>
                         </div>
                     </div>
@@ -2584,25 +2584,32 @@ function generatePixeldrainLink(fileId, fileName) {
 // Handler for Download button to open GKYFILEHOST link
 $(document).on('click', '.download-via-pixeldrain', function(e) {
     e.preventDefault();
+    e.stopPropagation();
+    
     const fileId = $(this).data('file-id');
     const button = $(this);
     
-    console.log('Download button clicked, fileId:', fileId);
+    console.log('========================================');
+    console.log('Pixeldrain Download button clicked!');
+    console.log('File ID:', fileId);
+    console.log('Button element:', this);
+    console.log('========================================');
     
     if (!fileId) {
+        console.error('No file ID found!');
         alert('Error: No file ID found');
-        return;
+        return false;
     }
     
     // Show loading state
     const originalHtml = button.html();
-    button.prop('disabled', true).html('<i class="fas fa-spinner fa-spin fa-fw"></i> Processing...');
+    button.prop('disabled', true).html('<i class="fas fa-spinner fa-spin fa-fw"></i> Uploading to Pixeldrain...');
     
-    // Call GKYFILEHOST function
+    // Call Pixeldrain function
     generatePixeldrainLink(fileId)
         .then((link) => {
             button.prop('disabled', false).html(originalHtml);
-            console.log('Successfully opened GKYFILEHOST link:', link);
+            console.log('✅ Successfully opened Pixeldrain link:', link);
         })
         .catch((error) => {
             button.html('<i class="fas fa-times fa-fw"></i> Failed');
@@ -2611,6 +2618,8 @@ $(document).on('click', '.download-via-pixeldrain', function(e) {
             }, 2000);
             console.error('Download error:', error);
         });
+    
+    return false; // Extra safety to prevent default
 });
 
 
