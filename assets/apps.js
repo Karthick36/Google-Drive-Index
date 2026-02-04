@@ -1930,23 +1930,18 @@ function file_video(name, encoded_name, size, poster, url, mimeType, md5Checksum
   <div class="col-md-12">
     <div class="text-center">
       <p class="mb-2">🚀&nbsp;𝔽𝕒𝕤𝕥&nbsp;&nbsp;𝔻𝕠𝕨𝕟𝕝𝕠𝕒𝕕&nbsp;&nbsp;𝕃𝕚𝕟𝕜𝕤&nbsp;&nbsp;<i class="fa-solid fa-cloud-arrow-down"></i></p>
-      <div class="d-flex flex-wrap gap-2 justify-content-center"> 
+      <div class="btn-group text-center">
         ${UI.display_drive_link ? ` 
        <button class="btn btn-secondary d-flex align-items-center gap-2 gdflix-btn" 
       data-file-id="${file_id}" type="button">${gdrive_icon}𝗚𝗗𝗙𝗹𝗶𝘅</button>` : ``}
-      
-      
-       
-      <div class="btn-group">
-        <button type="button" class="btn btn-success download-via-gkyfilehost" data-file-id="${file_id}">
+        <a type="button" class="btn btn-success download-via-gkyfilehost" data-file-id="${file_id}">
         <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱
-         </button>
+         </a>
           <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" 
                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only"></span>
           </button>
            <div class="dropdown-menu">
-              <a class="dropdown-item" href="${url}" target="_blank">Direct Download</a>
               <a class="dropdown-item" href="intent:${url}#Intent;package=com.playit.videoplayer;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name};end">${playit_icon} Playit</a>
               <a class="dropdown-item" href="intent:${url}#Intent;package=video.player.videoplayer;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name};end">${xplayer_icon} XPlayer</a>
               <a class="dropdown-item" href="intent:${url}#Intent;package=com.mxtech.videoplayer.ad;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name};end">${mxplayer_icon} MX Player</a>
