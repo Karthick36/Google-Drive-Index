@@ -1514,7 +1514,6 @@ function file_others(name, encoded_name, size, poster, url, mimeType, md5Checksu
             <span class="sr-only"></span>
           </button>
            <div class="dropdown-menu">
-              <a class="dropdown-item" href="${url}" target="_blank">Direct Download</a>
               <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Free)</a>
               <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.adm.lite/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Lite)</a>
               <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.plus/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM+ (Plus)</a>
