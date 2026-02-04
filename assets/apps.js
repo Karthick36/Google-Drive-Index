@@ -1513,14 +1513,11 @@ function file_others(name, encoded_name, size, poster, url, mimeType, md5Checksu
        <button class="btn btn-secondary d-flex align-items-center gap-2 gdflix-btn" 
       data-file-id="${file_id}" type="button">${gdrive_icon}𝗚𝗗𝗙𝗹𝗶𝘅</button>` : ``}
       
-      ${UI.display_drive_link ? ` 
-       <button class="btn btn-warning d-flex align-items-center gap-2 gkyfilehost-btn" 
-      data-file-id="${file_id}" type="button">
-      <i class="fa-solid fa-cloud-arrow-up"></i>𝗚𝗞𝗬𝗙𝗜𝗟𝗘𝗛𝗢𝗦𝗧</button>` : ``}
+      
        
       <div class="btn-group">
         <button type="button" class="btn btn-success download-via-gkyfilehost" data-file-id="${file_id}">
-        <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱 
+        <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱
          </button>
           <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" 
                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -1704,14 +1701,11 @@ function file_code(name, encoded_name, size, bytes, poster, url, mimeType, md5Ch
        <button class="btn btn-secondary d-flex align-items-center gap-2 gdflix-btn" 
       data-file-id="${file_id}" type="button">${gdrive_icon}𝗚𝗗𝗙𝗹𝗶𝘅</button>` : ``}
       
-      ${UI.display_drive_link ? ` 
-       <button class="btn btn-warning d-flex align-items-center gap-2 gkyfilehost-btn" 
-      data-file-id="${file_id}" type="button">
-      <i class="fa-solid fa-cloud-arrow-up"></i>𝗚𝗞𝗬𝗙𝗜𝗟𝗘𝗛𝗢𝗦𝗧</button>` : ``}
+      
        
       <div class="btn-group">
         <button type="button" class="btn btn-success download-via-gkyfilehost" data-file-id="${file_id}">
-        <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱 
+        <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱
          </button>
           <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" 
                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -1794,41 +1788,6 @@ $(document).on('click', '.gkyfilehost-btn', function() {
             console.error('GKYFILEHOST error:', error);
         });
 });
-// Handler for the green Download button that opens GKYFILEHOST link
-$(document).on('click', '.download-via-gkyfilehost', function(e) {
-    e.preventDefault();
-    const fileId = $(this).data('file-id');
-    const button = $(this);
-    
-    console.log('Download button clicked, fileId:', fileId);
-    
-    if (!fileId) {
-        alert('Error: No file ID found');
-        return;
-    }
-    
-    // Show loading state
-    const originalHtml = button.html();
-    button.prop('disabled', true)
-          .html('<i class="fas fa-spinner fa-spin fa-fw"></i> Loading...');
-    
-    // Call the GKYFILEHOST function
-    generateGKYFILEHOSTLink(fileId)
-        .then((link) => {
-            // Reset button
-            button.prop('disabled', false).html(originalHtml);
-            console.log('Successfully opened GKYFILEHOST link:', link);
-        })
-        .catch((error) => {
-            // Show error and reset
-            button.html('<i class="fas fa-times fa-fw"></i> Failed');
-            setTimeout(() => {
-                button.prop('disabled', false).html(originalHtml);
-            }, 2000);
-            console.error('Download via GKYFILEHOST error:', error);
-        });
-});
-
 	
 	// Rest of the function remains the same...
 	$('#SearchModelLabel').html('<i class="fa-regular fa-eye fa-fw"></i>Preview');
@@ -1976,14 +1935,11 @@ function file_video(name, encoded_name, size, poster, url, mimeType, md5Checksum
        <button class="btn btn-secondary d-flex align-items-center gap-2 gdflix-btn" 
       data-file-id="${file_id}" type="button">${gdrive_icon}𝗚𝗗𝗙𝗹𝗶𝘅</button>` : ``}
       
-      ${UI.display_drive_link ? ` 
-       <button class="btn btn-warning d-flex align-items-center gap-2 gkyfilehost-btn" 
-      data-file-id="${file_id}" type="button">
-      <i class="fa-solid fa-cloud-arrow-up"></i>𝗚𝗞𝗬𝗙𝗜𝗟𝗘𝗛𝗢𝗦𝗧</button>` : ``}
+      
        
       <div class="btn-group">
         <button type="button" class="btn btn-success download-via-gkyfilehost" data-file-id="${file_id}">
-        <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱 
+        <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱
          </button>
           <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" 
                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -2068,41 +2024,6 @@ $(document).on('click', '.gkyfilehost-btn', function() {
             console.error('GKYFILEHOST error:', error);
         });
 });
-// Handler for the green Download button that opens GKYFILEHOST link
-$(document).on('click', '.download-via-gkyfilehost', function(e) {
-    e.preventDefault();
-    const fileId = $(this).data('file-id');
-    const button = $(this);
-    
-    console.log('Download button clicked, fileId:', fileId);
-    
-    if (!fileId) {
-        alert('Error: No file ID found');
-        return;
-    }
-    
-    // Show loading state
-    const originalHtml = button.html();
-    button.prop('disabled', true)
-          .html('<i class="fas fa-spinner fa-spin fa-fw"></i> Loading...');
-    
-    // Call the GKYFILEHOST function
-    generateGKYFILEHOSTLink(fileId)
-        .then((link) => {
-            // Reset button
-            button.prop('disabled', false).html(originalHtml);
-            console.log('Successfully opened GKYFILEHOST link:', link);
-        })
-        .catch((error) => {
-            // Show error and reset
-            button.html('<i class="fas fa-times fa-fw"></i> Failed');
-            setTimeout(() => {
-                button.prop('disabled', false).html(originalHtml);
-            }, 2000);
-            console.error('Download via GKYFILEHOST error:', error);
-        });
-});
-
 
   
   // Load Video.js and initialize the player
@@ -2215,7 +2136,7 @@ function file_audio(name, encoded_name, size, url, mimeType, md5Checksum, create
                         <p class="mb-2">Download via</p>
                         <div class="btn-group text-center">
                             <button type="button" class="btn btn-success download-via-gkyfilehost" data-file-id="${file_id}">
-        <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱 
+        <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱
          </button>
                             <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" 
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -2680,6 +2601,40 @@ function generateGKYFILEHOSTLink(fileId, fileName) {
         });
     });
 }
+
+// Handler for Download button to open GKYFILEHOST link
+$(document).on('click', '.download-via-gkyfilehost', function(e) {
+    e.preventDefault();
+    const fileId = $(this).data('file-id');
+    const button = $(this);
+    
+    console.log('Download button clicked, fileId:', fileId);
+    
+    if (!fileId) {
+        alert('Error: No file ID found');
+        return;
+    }
+    
+    // Show loading state
+    const originalHtml = button.html();
+    button.prop('disabled', true).html('<i class="fas fa-spinner fa-spin fa-fw"></i> Loading...');
+    
+    // Call GKYFILEHOST function
+    generateGKYFILEHOSTLink(fileId)
+        .then((link) => {
+            button.prop('disabled', false).html(originalHtml);
+            console.log('Successfully opened GKYFILEHOST link:', link);
+        })
+        .catch((error) => {
+            button.html('<i class="fas fa-times fa-fw"></i> Failed');
+            setTimeout(() => {
+                button.prop('disabled', false).html(originalHtml);
+            }, 2000);
+            console.error('Download error:', error);
+        });
+});
+
+
 // create a MutationObserver to listen for changes to the DOM
 const observer = new MutationObserver(() => {
 	updateCheckboxes();
