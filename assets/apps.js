@@ -1580,7 +1580,7 @@ $(document).on('click', '.gkyfilehost-btn', function() {
     // Show loading state
     const originalHtml = button.html();
     button.prop('disabled', true)
-          .html('<i class="fas fa-spinner fa-spin fa-fw"></i> Uploading...');
+          .html('<i class="fas fa-spinner fa-spin fa-fw"></i> Processing...');
     
     // Call the GKYFILEHOST function
     generateGKYFILEHOSTLink(fileId)
@@ -1768,7 +1768,7 @@ $(document).on('click', '.gkyfilehost-btn', function() {
     // Show loading state
     const originalHtml = button.html();
     button.prop('disabled', true)
-          .html('<i class="fas fa-spinner fa-spin fa-fw"></i> Uploading...');
+          .html('<i class="fas fa-spinner fa-spin fa-fw"></i> Processing...');
     
     // Call the GKYFILEHOST function
     generateGKYFILEHOSTLink(fileId)
@@ -1999,7 +1999,7 @@ $(document).on('click', '.gkyfilehost-btn', function() {
     // Show loading state
     const originalHtml = button.html();
     button.prop('disabled', true)
-          .html('<i class="fas fa-spinner fa-spin fa-fw"></i> Uploading...');
+          .html('<i class="fas fa-spinner fa-spin fa-fw"></i> Processing...');
     
     // Call the GKYFILEHOST function
     generateGKYFILEHOSTLink(fileId)
@@ -2612,7 +2612,7 @@ $(document).on('click', '.download-via-gkyfilehost', function(e) {
     
     // Show loading state
     const originalHtml = button.html();
-    button.prop('disabled', true).html('<i class="fas fa-spinner fa-spin fa-fw"></i> Loading...');
+    button.prop('disabled', true).html('<i class="fas fa-spinner fa-spin fa-fw"></i> Processing...');
     
     // Call GKYFILEHOST function
     generateGKYFILEHOSTLink(fileId)
