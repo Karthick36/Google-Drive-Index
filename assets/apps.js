@@ -1555,11 +1555,11 @@ function file_others(name, encoded_name, size, poster, url, mimeType, md5Checksu
     });
 
   // GKYFILEHOST button click handler
-$(document).on('click', '.gkyfilehost-btn', function() {
+$(document).on('click', '.pixeldrain-btn', function() {
     const fileId = $(this).data('file-id');
     const button = $(this);
     
-    console.log('GKYFILEHOST Button clicked, fileId:', fileId);
+    console.log('Pixeldrain Button clicked, fileId:', fileId);
     
     if (!fileId) {
         alert('Error: No file ID found');
@@ -1572,7 +1572,7 @@ $(document).on('click', '.gkyfilehost-btn', function() {
           .html('<i class="fas fa-spinner fa-spin fa-fw"></i> Processing...');
     
     // Call the GKYFILEHOST function
-    generateGKYFILEHOSTLink(fileId)
+    generatePixeldrainLink(fileId)
         .then((link) => {
             // Show success message
             button.html('<i class="fas fa-check fa-fw"></i> Success!');
@@ -1586,7 +1586,7 @@ $(document).on('click', '.gkyfilehost-btn', function() {
             setTimeout(() => {
                 button.prop('disabled', false).html(originalHtml);
             }, 2000);
-            console.error('GKYFILEHOST error:', error);
+            console.error('Pixeldrain error:', error);
         });
      });
 	
@@ -1739,11 +1739,11 @@ function file_code(name, encoded_name, size, bytes, poster, url, mimeType, md5Ch
     });
 
 	// GKYFILEHOST button click handler
-$(document).on('click', '.gkyfilehost-btn', function() {
+$(document).on('click', '.pixeldrain-btn', function() {
     const fileId = $(this).data('file-id');
     const button = $(this);
     
-    console.log('GKYFILEHOST Button clicked, fileId:', fileId);
+    console.log('Pixeldrain Button clicked, fileId:', fileId);
     
     if (!fileId) {
         alert('Error: No file ID found');
@@ -1756,7 +1756,7 @@ $(document).on('click', '.gkyfilehost-btn', function() {
           .html('<i class="fas fa-spinner fa-spin fa-fw"></i> Processing...');
     
     // Call the GKYFILEHOST function
-    generateGKYFILEHOSTLink(fileId)
+    generatePixeldrainLink(fileId)
         .then((link) => {
             // Show success message
             button.html('<i class="fas fa-check fa-fw"></i> Success!');
@@ -1770,7 +1770,7 @@ $(document).on('click', '.gkyfilehost-btn', function() {
             setTimeout(() => {
                 button.prop('disabled', false).html(originalHtml);
             }, 2000);
-            console.error('GKYFILEHOST error:', error);
+            console.error('Pixeldrain error:', error);
         });
 });
 	
@@ -1970,11 +1970,11 @@ function file_video(name, encoded_name, size, poster, url, mimeType, md5Checksum
     });
 
 	// GKYFILEHOST button click handler
-$(document).on('click', '.gkyfilehost-btn', function() {
+$(document).on('click', '.pixeldrain-btn', function() {
     const fileId = $(this).data('file-id');
     const button = $(this);
     
-    console.log('GKYFILEHOST Button clicked, fileId:', fileId);
+    console.log('Pixeldrain Button clicked, fileId:', fileId);
     
     if (!fileId) {
         alert('Error: No file ID found');
@@ -1987,7 +1987,7 @@ $(document).on('click', '.gkyfilehost-btn', function() {
           .html('<i class="fas fa-spinner fa-spin fa-fw"></i> Processing...');
     
     // Call the GKYFILEHOST function
-    generateGKYFILEHOSTLink(fileId)
+    generatePixeldrainLink(fileId)
         .then((link) => {
             // Show success message
             button.html('<i class="fas fa-check fa-fw"></i> Success!');
@@ -2001,7 +2001,7 @@ $(document).on('click', '.gkyfilehost-btn', function() {
             setTimeout(() => {
                 button.prop('disabled', false).html(originalHtml);
             }, 2000);
-            console.error('GKYFILEHOST error:', error);
+            console.error('Pixeldrain error:', error);
         });
 });
 
@@ -2447,14 +2447,14 @@ function generateGDFlixLink(fileId) {
         });
     });
 }
-// Update the generateGKYFILEHOSTLink function to call the worker endpoint
-function generateGKYFILEHOSTLink(fileId, fileName) {
+// Update the generatePixeldrainLink function to call the worker endpoint
+function generatePixeldrainLink(fileId, fileName) {
     return new Promise((resolve, reject) => {
-        console.log('GKYFILEHOST - Received fileId:', fileId);
-        console.log('GKYFILEHOST - Received fileName:', fileName);
+        console.log('Pixeldrain - Received fileId:', fileId);
+        console.log('Pixeldrain - Received fileName:', fileName);
         
         if (!fileId) {
-            console.error('GKYFILEHOST - No file ID provided');
+            console.error('Pixeldrain - No file ID provided');
             alert('Error: No file ID provided');
             reject(new Error('No file ID provided'));
             return;
@@ -2463,7 +2463,7 @@ function generateGKYFILEHOSTLink(fileId, fileName) {
         fileId = String(fileId).trim();
         
         if (fileId === '') {
-            console.error('GKYFILEHOST - Empty file ID');
+            console.error('Pixeldrain - Empty file ID');
             alert('Error: Empty file ID');
             reject(new Error('Empty file ID'));
             return;
@@ -2478,20 +2478,20 @@ function generateGKYFILEHOSTLink(fileId, fileName) {
                     fileName = titleElement.textContent.trim();
                 }
             } catch (e) {
-                console.log('GKYFILEHOST - Could not extract filename from page');
+                console.log('Pixeldrain - Could not extract filename from page');
             }
         }
         
-        console.log('GKYFILEHOST - Final fileName:', fileName || 'download');
-        console.log('GKYFILEHOST - Requesting link generation from worker...');
-        console.log('GKYFILEHOST - File ID being sent:', fileId);
+        console.log('Pixeldrain - Final fileName:', fileName || 'download');
+        console.log('Pixeldrain - Requesting link generation from worker...');
+        console.log('Pixeldrain - File ID being sent:', fileId);
         
         // Show a loading indicator (you can customize this)
-        const loadingMsg = 'Generating GKYFILEHOST link... Please wait...';
+        const loadingMsg = 'Uploading to Pixeldrain... Please wait...';
         console.log(loadingMsg);
         
-        // Make request to worker endpoint (FIXED: Changed from /generate-gkyfilehost to /gkyfilehost)
-        fetch('/gkyfilehost', {
+        // Make request to worker endpoint
+        fetch('/pixeldrain', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -2502,8 +2502,8 @@ function generateGKYFILEHOSTLink(fileId, fileName) {
             })
         })
         .then(response => {
-            console.log('GKYFILEHOST - Response status:', response.status);
-            console.log('GKYFILEHOST - Response OK:', response.ok);
+            console.log('Pixeldrain - Response status:', response.status);
+            console.log('Pixeldrain - Response OK:', response.ok);
             
             // Try to get the response body even if status is not OK
             return response.json().then(data => {
@@ -2516,57 +2516,57 @@ function generateGKYFILEHOSTLink(fileId, fileName) {
             });
         })
         .then(result => {
-            console.log('GKYFILEHOST - Full response:', result);
+            console.log('Pixeldrain - Full response:', result);
             
             if (!result.ok) {
                 // Show specific error from server
                 const errorMsg = result.data.error || result.data.details || `HTTP error! status: ${result.status}`;
-                console.error('GKYFILEHOST - Server error:', errorMsg);
+                console.error('Pixeldrain - Server error:', errorMsg);
                 throw new Error(errorMsg);
             }
             
             const data = result.data;
-            console.log('GKYFILEHOST - Worker response data:', data);
+            console.log('Pixeldrain - Worker response data:', data);
             
-            if (data.success && (data.link || data.gkyfilehost_link)) {
-                const gkyLink = data.link || data.gkyfilehost_link;
-                console.log('GKYFILEHOST - Generated link:', gkyLink);
+            if (data.success && data.link) {
+                const pixeldrainLink = data.link;
+                console.log('Pixeldrain - Generated link:', pixeldrainLink);
                 
                 // Validate the link format
-                if (!gkyLink.includes('gkyfilehost')) {
-                    console.warn('GKYFILEHOST - Warning: Link does not contain gkyfilehost domain');
+                if (!pixeldrainLink.includes('pixeldrain')) {
+                    console.warn('Pixeldrain - Warning: Link does not contain pixeldrain domain');
                 }
                 
-                // Open the GKYFILEHOST link directly in a new tab
-                window.open(gkyLink, '_blank');
+                // Open the Pixeldrain link directly in a new tab
+                window.open(pixeldrainLink, '_blank');
                 
                 // Show success message
-                console.log('✅ GKYFILEHOST link generated successfully!');
+                console.log('✅ Pixeldrain link generated successfully!');
                 
-                resolve(gkyLink);
+                resolve(pixeldrainLink);
             } else {
-                const errorMsg = data.error || 'Failed to generate GKYFILEHOST link - no link in response';
-                console.error('GKYFILEHOST - Error from server:', errorMsg);
+                const errorMsg = data.error || 'Failed to generate Pixeldrain link - no link in response';
+                console.error('Pixeldrain - Error from server:', errorMsg);
                 throw new Error(errorMsg);
             }
         })
         .catch(error => {
-            console.error('GKYFILEHOST Error:', error);
-            console.error('GKYFILEHOST Error stack:', error.stack);
+            console.error('Pixeldrain Error:', error);
+            console.error('Pixeldrain Error stack:', error.stack);
             
             // Show user-friendly error message
-            let userMessage = 'Failed to generate GKYFILEHOST link';
+            let userMessage = 'Failed to upload to Pixeldrain';
             
-            if (error.message.includes('Failed to login')) {
-                userMessage += '\n\n⚠️ Login to GKYFILEHOST failed.\n\nPossible solutions:\n' +
-                             '1. Check your GKYFILEHOST account credentials\n' +
-                             '2. Make sure your account is active\n' +
-                             '3. Check Cloudflare Worker logs for details';
+            if (error.message.includes('Failed to fetch file from Google Drive')) {
+                userMessage += '\n\n⚠️ Could not access the Google Drive file.\n\nPossible solutions:\n' +
+                             '1. Check if the file ID is correct\n' +
+                             '2. Ensure the file is publicly accessible\n' +
+                             '3. Try again in a few moments';
             } else if (error.message.includes('HTTP error! status: 500')) {
                 userMessage += '\n\nServer error (500).\n\nPlease check:\n' +
                              '1. Cloudflare Worker logs for details\n' +
-                             '2. GKYFILEHOST credentials are correct\n' +
-                             '3. The file ID is valid';
+                             '2. The file size (max 10GB)\n' +
+                             '3. Try again in a few moments';
             } else if (error.message.includes('HTTP error! status: 400')) {
                 userMessage += '\n\nBad request (400). The file ID might be invalid.';
             } else if (error.message.includes('Failed to fetch')) {
@@ -2582,7 +2582,7 @@ function generateGKYFILEHOSTLink(fileId, fileName) {
 }
 
 // Handler for Download button to open GKYFILEHOST link
-$(document).on('click', '.download-via-gkyfilehost', function(e) {
+$(document).on('click', '.download-via-pixeldrain', function(e) {
     e.preventDefault();
     const fileId = $(this).data('file-id');
     const button = $(this);
@@ -2599,7 +2599,7 @@ $(document).on('click', '.download-via-gkyfilehost', function(e) {
     button.prop('disabled', true).html('<i class="fas fa-spinner fa-spin fa-fw"></i> Processing...');
     
     // Call GKYFILEHOST function
-    generateGKYFILEHOSTLink(fileId)
+    generatePixeldrainLink(fileId)
         .then((link) => {
             button.prop('disabled', false).html(originalHtml);
             console.log('Successfully opened GKYFILEHOST link:', link);
