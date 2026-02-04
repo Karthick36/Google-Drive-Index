@@ -1919,7 +1919,7 @@ function file_video(name, encoded_name, size, poster, url, mimeType, md5Checksum
         ${UI.display_drive_link ? ` 
        <button class="btn btn-secondary d-flex align-items-center gap-2 gdflix-btn" 
       data-file-id="${file_id}" type="button">${gdrive_icon}𝗚𝗗𝗙𝗹𝗶𝘅 𝗟𝗶𝗻𝗸</button>` : ``}
-        <button type="button" class="btn btn-success download-via-pixeldrain" data-file-id="${file_id}">
+        <button type="button" class="btn btn-success download-via-pixeldrain" data-file-id="${url}">
         <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱
          </button>
           <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" 
