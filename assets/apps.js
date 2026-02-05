@@ -44,7 +44,7 @@ document.siteName = $('title').html();
       </div>
        <div class="col-lg-4 col-md-12 text-lg-end">
         <p>
-        <a href="#"><img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2F` + window.location.host + `&label=hits&icon=bar-chart-fill&color=%23198754"/></button>
+        <a href="#"><img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2F` + window.location.host + `&label=hits&icon=bar-chart-fill&color=%23198754"/></a>
         </p>
       </div>
 	  <script>
@@ -183,20 +183,20 @@ function nav(path) {
 	var cur = window.current_drive_order || 0;
 	html += `<nav class="navbar navbar-expand-lg${UI.fixed_header ?' fixed-top': ''} ${UI.header_style_class} container">
     <div class="container-fluid mx-2">
-  <a class="navbar-brand d-flex align-items-center gap-2" href="/">${UI.logo_image ? '<img border="0" alt="'+UI.company_name+'" src="'+UI.logo_link_name+'" height="'+UI.logo_height+'" width="'+UI.logo_width+'">'+UI.siteName : UI.logo_link_name}</button>
+  <a class="navbar-brand d-flex align-items-center gap-2" href="/">${UI.logo_image ? '<img border="0" alt="'+UI.company_name+'" src="'+UI.logo_link_name+'" height="'+UI.logo_height+'" width="'+UI.logo_width+'">'+UI.siteName : UI.logo_link_name}</a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <li class="nav-item">
-        <a class="nav-link" href="/${cur}:/"><i class="fas fa-home fa-fw"></i>${UI.nav_link_1}</button>
+        <a class="nav-link" href="/${cur}:/"><i class="fas fa-home fa-fw"></i>${UI.nav_link_1}</a>
       </li>`;
 	var names = window.drive_names;
 	var drive_name = window.drive_names[cur];
 
 	html += `<li class="nav-item">
-    <a class="nav-link" href="${UI.contact_link}" target="_blank"><i class="fas fa-paper-plane fa-fw"></i>${UI.nav_link_4}</button>
+    <a class="nav-link" href="${UI.contact_link}" target="_blank"><i class="fas fa-paper-plane fa-fw"></i>${UI.nav_link_4}</a>
   </li>${UI.show_logout_button ?'<li class="nav-item"><a class="nav-link" href="/logout"><i class="fa-solid fa-arrow-right-from-bracket fa-fw"></i>Logout</a></li>': ''}`;
 
 	var search_text = model.is_search_page ? (model.q || '') : '';
@@ -269,7 +269,7 @@ function requestListPath(path, params, resultCallback, authErrorCallback, retrie
 					<p>The requested URL was not found on this server. That’s all we know.</p>
 					<div class="card-text text-center">
 					  <div class="btn-group text-center">
-						<a href="/" type="button" class="btn btn-success">Homepage</button>
+						<a href="/" type="button" class="btn btn-success">Homepage</a>
 					  </div>
 					</div><br>
 				  </div>`;
@@ -1206,7 +1206,7 @@ function onSearchResultItemClick(file_id, can_preview, file) {
     const fileUrl = `/fallback?id=${file_id}${can_preview ? '&a=view' : ''}`;
     
     btn = `<div class="btn-group">
-        <a href="${fileUrl}" type="button" class="btn btn-primary" target="_blank"><i class="fas fa-bolt fa-fw"></i>Instant Link</button>
+        <a href="${fileUrl}" type="button" class="btn btn-primary" target="_blank"><i class="fas fa-bolt fa-fw"></i>Instant Link</a>
         <button type="button" class="btn btn-info copy-url-btn" data-url="${fileUrl}">
             <i class="fas fa-copy fa-fw"></i> Copy URL
         </button>
@@ -1223,7 +1223,7 @@ function onSearchResultItemClick(file_id, can_preview, file) {
     const fileUrl = `/fallback?id=${file_id}${can_preview ? '&a=view' : ''}`;
     
     btn = `<div class="btn-group">
-        <a href="${fileUrl}" type="button" class="btn btn-primary" target="_blank"><i class="fas fa-bolt fa-fw"></i>Instant Link</button>
+        <a href="${fileUrl}" type="button" class="btn btn-primary" target="_blank"><i class="fas fa-bolt fa-fw"></i>Instant Link</a>
         <button type="button" class="btn btn-info copy-url-btn" data-url="${fileUrl}">
             <i class="fas fa-copy fa-fw"></i> Copy URL
         </button>
@@ -1333,7 +1333,7 @@ async function fallback(id, type) {
 					<div class="card-body text-center">
 						<div class="${UI.file_view_alert_class}" id="file_details" role="alert"><b>404.</b> That’s an error. ` + error + `</div>
 						<p>The requested URL was not found on this server. That’s all we know.</p>
-						<a href="/" type="button" class="btn btn-success"><i class="fas fa-home fa-fw"></i>Home</button>
+						<a href="/" type="button" class="btn btn-success"><i class="fas fa-home fa-fw"></i>Home</a>
 					</div>
 				</div>`;
 				$("#content").html(content);
@@ -1403,7 +1403,7 @@ async function file(path) {
 				<div class="card-body text-center">
 					<div class="${UI.file_view_alert_class}" id="file_details" role="alert"><b>404.</b> That’s an error. ` + error + `</div>
 					<p>The requested URL was not found on this server. That’s all we know.</p>
-					<a href="/" type="button" class="btn btn-success"><i class="fas fa-home fa-fw"></i>Home</button>
+					<a href="/" type="button" class="btn btn-success"><i class="fas fa-home fa-fw"></i>Home</a>
 				</div>
 			</div>`;
 			$("#content").html(content);
@@ -1449,7 +1449,7 @@ function file_others(name, encoded_name, size, poster, url, mimeType, md5Checksu
 					<div id="overlay" class="overlay border border-dark rounded d-flex justify-content-center align-items-center flex-column gap-3 pt-4 pb-4" style="--bs-border-opacity: .5; opacity: 0;">
 						<span><i class="fas fa-search-plus fa-2xl fa-fw"></i></span>
 						<span>Preview</span>
-						<a href="#" class="stretched-link" data-bs-toggle="modal" data-bs-target="#SearchModel" title="Thumbnail of ${name}"></button>
+						<a href="#" class="stretched-link" data-bs-toggle="modal" data-bs-target="#SearchModel" title="Thumbnail of ${name}"></a>
 					</div>
 				</div>` : `
 				<div class="h-100 border border-dark rounded d-flex justify-content-center align-items-center flex-column gap-3 pt-4 pb-4" style="--bs-border-opacity: .5;">
@@ -1506,17 +1506,17 @@ function file_others(name, encoded_name, size, poster, url, mimeType, md5Checksu
         ${UI.display_drive_link ? ` 
        <button class="btn btn-secondary d-flex align-items-center gap-2 gdflix-btn" 
       data-file-id="${file_id}" type="button">${gdrive_icon}𝗚𝗗𝗙𝗹𝗶𝘅 𝗟𝗶𝗻𝗸</button>` : ``}
-        <button type="button" class="btn btn-success download-via-pixeldrain" data-file-id="${file_id}">
+        <a type="button" class="btn btn-success download-via-gkyfilehost" data-file-id="${file_id}">
         <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱
-         </button>
+         </a>
           <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" 
                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only"></span>
           </button>
            <div class="dropdown-menu">
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Free)</button>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.adm.lite/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Lite)</button>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.plus/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM+ (Plus)</button>
+              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Free)</a>
+              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.adm.lite/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Lite)</a>
+              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.plus/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM+ (Plus)</a>
           </div>
           </div>
         </div> 
@@ -1555,11 +1555,11 @@ function file_others(name, encoded_name, size, poster, url, mimeType, md5Checksu
     });
 
   // GKYFILEHOST button click handler
-$(document).on('click', '.pixeldrain-btn', function() {
+$(document).on('click', '.gkyfilehost-btn', function() {
     const fileId = $(this).data('file-id');
     const button = $(this);
     
-    console.log('Pixeldrain Button clicked, fileId:', fileId);
+    console.log('GKYFILEHOST Button clicked, fileId:', fileId);
     
     if (!fileId) {
         alert('Error: No file ID found');
@@ -1572,7 +1572,7 @@ $(document).on('click', '.pixeldrain-btn', function() {
           .html('<i class="fas fa-spinner fa-spin fa-fw"></i> Processing...');
     
     // Call the GKYFILEHOST function
-    generatePixeldrainLink(fileId)
+    generateGKYFILEHOSTLink(fileId)
         .then((link) => {
             // Show success message
             button.html('<i class="fas fa-check fa-fw"></i> Success!');
@@ -1586,7 +1586,7 @@ $(document).on('click', '.pixeldrain-btn', function() {
             setTimeout(() => {
                 button.prop('disabled', false).html(originalHtml);
             }, 2000);
-            console.error('Pixeldrain error:', error);
+            console.error('GKYFILEHOST error:', error);
         });
      });
 	
@@ -1637,7 +1637,7 @@ function file_code(name, encoded_name, size, bytes, poster, url, mimeType, md5Ch
 					<div id="overlay" class="overlay border border-dark rounded d-flex justify-content-center align-items-center flex-column gap-3 pt-4 pb-4" style="--bs-border-opacity: .5; opacity: 0;">
 						<span><i class="fas fa-search-plus fa-2xl fa-fw"></i></span>
 						<span>Preview</span>
-						<a href="#" class="stretched-link" data-bs-toggle="modal" data-bs-target="#SearchModel" title="Thumbnail of ${name}"></button>
+						<a href="#" class="stretched-link" data-bs-toggle="modal" data-bs-target="#SearchModel" title="Thumbnail of ${name}"></a>
 					</div>` : ``}
 				</div>
 			</div>
@@ -1689,18 +1689,18 @@ function file_code(name, encoded_name, size, bytes, poster, url, mimeType, md5Ch
         ${UI.display_drive_link ? ` 
        <button class="btn btn-secondary d-flex align-items-center gap-2 gdflix-btn" 
       data-file-id="${file_id}" type="button">${gdrive_icon}𝗚𝗗𝗙𝗹𝗶𝘅 𝗟𝗶𝗻𝗸</button>` : ``}
-        <button type="button" class="btn btn-success download-via-pixeldrain" data-file-id="${file_id}">
+        <a type="button" class="btn btn-success download-via-gkyfilehost" data-file-id="${file_id}">
         <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱
-         </button>
+         </a>
           <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" 
                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only"></span>
           </button>
            <div class="dropdown-menu">
-              <a class="dropdown-item" href="${url}" target="_blank">Direct Download</button>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Free)</button>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.adm.lite/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Lite)</button>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.plus/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM+ (Plus)</button>
+              <a class="dropdown-item" href="${url}" target="_blank">Direct Download</a>
+              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Free)</a>
+              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.adm.lite/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM (Lite)</a>
+              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager.plus/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">1DM+ (Plus)</a>
           </div>
           </div>
         </div> 
@@ -1739,11 +1739,11 @@ function file_code(name, encoded_name, size, bytes, poster, url, mimeType, md5Ch
     });
 
 	// GKYFILEHOST button click handler
-$(document).on('click', '.pixeldrain-btn', function() {
+$(document).on('click', '.gkyfilehost-btn', function() {
     const fileId = $(this).data('file-id');
     const button = $(this);
     
-    console.log('Pixeldrain Button clicked, fileId:', fileId);
+    console.log('GKYFILEHOST Button clicked, fileId:', fileId);
     
     if (!fileId) {
         alert('Error: No file ID found');
@@ -1756,7 +1756,7 @@ $(document).on('click', '.pixeldrain-btn', function() {
           .html('<i class="fas fa-spinner fa-spin fa-fw"></i> Processing...');
     
     // Call the GKYFILEHOST function
-    generatePixeldrainLink(fileId)
+    generateGKYFILEHOSTLink(fileId)
         .then((link) => {
             // Show success message
             button.html('<i class="fas fa-check fa-fw"></i> Success!');
@@ -1770,7 +1770,7 @@ $(document).on('click', '.pixeldrain-btn', function() {
             setTimeout(() => {
                 button.prop('disabled', false).html(originalHtml);
             }, 2000);
-            console.error('Pixeldrain error:', error);
+            console.error('GKYFILEHOST error:', error);
         });
 });
 	
@@ -1919,19 +1919,19 @@ function file_video(name, encoded_name, size, poster, url, mimeType, md5Checksum
         ${UI.display_drive_link ? ` 
        <button class="btn btn-secondary d-flex align-items-center gap-2 gdflix-btn" 
       data-file-id="${file_id}" type="button">${gdrive_icon}𝗚𝗗𝗙𝗹𝗶𝘅 𝗟𝗶𝗻𝗸</button>` : ``}
-        <button type="button" class="btn btn-success download-via-pixeldrain" data-file-id="${url}">
+        <a type="button" class="btn btn-success download-via-gkyfilehost" data-file-id="${file_id}">
         <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱
-         </button>
+         </a>
           <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" 
                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only"></span>
           </button>
            <div class="dropdown-menu">
-              <a class="dropdown-item" href="intent:${url}#Intent;package=com.playit.videoplayer;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name};end">${playit_icon} Playit</button>
-              <a class="dropdown-item" href="intent:${url}#Intent;package=video.player.videoplayer;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name};end">${xplayer_icon} XPlayer</button>
-              <a class="dropdown-item" href="intent:${url}#Intent;package=com.mxtech.videoplayer.ad;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name};end">${mxplayer_icon} MX Player</button>
-              <a class="dropdown-item" href="intent:${url}#Intent;package=org.videolan.vlc;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name};end">${vlc_icon} VLC Player</button>
-              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">${new_download_icon} 1DM (Free)</button>
+              <a class="dropdown-item" href="intent:${url}#Intent;package=com.playit.videoplayer;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name};end">${playit_icon} Playit</a>
+              <a class="dropdown-item" href="intent:${url}#Intent;package=video.player.videoplayer;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name};end">${xplayer_icon} XPlayer</a>
+              <a class="dropdown-item" href="intent:${url}#Intent;package=com.mxtech.videoplayer.ad;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name};end">${mxplayer_icon} MX Player</a>
+              <a class="dropdown-item" href="intent:${url}#Intent;package=org.videolan.vlc;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name};end">${vlc_icon} VLC Player</a>
+              <a class="dropdown-item" href="intent:${url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name};end">${new_download_icon} 1DM (Free)</a>
             </div>
           </div>
         </div> 
@@ -1970,11 +1970,11 @@ function file_video(name, encoded_name, size, poster, url, mimeType, md5Checksum
     });
 
 	// GKYFILEHOST button click handler
-$(document).on('click', '.pixeldrain-btn', function() {
+$(document).on('click', '.gkyfilehost-btn', function() {
     const fileId = $(this).data('file-id');
     const button = $(this);
     
-    console.log('Pixeldrain Button clicked, fileId:', fileId);
+    console.log('GKYFILEHOST Button clicked, fileId:', fileId);
     
     if (!fileId) {
         alert('Error: No file ID found');
@@ -1987,7 +1987,7 @@ $(document).on('click', '.pixeldrain-btn', function() {
           .html('<i class="fas fa-spinner fa-spin fa-fw"></i> Processing...');
     
     // Call the GKYFILEHOST function
-    generatePixeldrainLink(fileId)
+    generateGKYFILEHOSTLink(fileId)
         .then((link) => {
             // Show success message
             button.html('<i class="fas fa-check fa-fw"></i> Success!');
@@ -2001,7 +2001,7 @@ $(document).on('click', '.pixeldrain-btn', function() {
             setTimeout(() => {
                 button.prop('disabled', false).html(originalHtml);
             }, 2000);
-            console.error('Pixeldrain error:', error);
+            console.error('GKYFILEHOST error:', error);
         });
 });
 
@@ -2117,17 +2117,17 @@ function file_audio(name, encoded_name, size, url, mimeType, md5Checksum, create
                         <div class="btn-group text-center">
                             <a href="${url}" type="button" class="btn btn-success">
                                 <i class="fa-solid fa-circle-down"></i>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱
-                            </button>
+                            </a>
                             <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" 
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="sr-only"></span>
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="intent:${encoded_url}#Intent;package=com.playit.videoplayer;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name_safe};end">Playit</button>
-                                <a class="dropdown-item" href="intent:${encoded_url}#Intent;package=video.player.videoplayer;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name_safe};end">XPlayer</button>
-                                <a class="dropdown-item" href="intent:${encoded_url}#Intent;package=com.mxtech.videoplayer.ad;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name_safe};end">MX Player</button>
-                                <a class="dropdown-item" href="intent:${encoded_url}#Intent;package=org.videolan.vlc;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name_safe};end">VLC Player</button>
-                                <a class="dropdown-item" href="intent:${encoded_url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name_safe};end">1DM (Free)</button>
+                                <a class="dropdown-item" href="intent:${encoded_url}#Intent;package=com.playit.videoplayer;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name_safe};end">Playit</a>
+                                <a class="dropdown-item" href="intent:${encoded_url}#Intent;package=video.player.videoplayer;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name_safe};end">XPlayer</a>
+                                <a class="dropdown-item" href="intent:${encoded_url}#Intent;package=com.mxtech.videoplayer.ad;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name_safe};end">MX Player</a>
+                                <a class="dropdown-item" href="intent:${encoded_url}#Intent;package=org.videolan.vlc;category=android.intent.category.DEFAULT;type=video/*;S.title=${encoded_name_safe};end">VLC Player</a>
+                                <a class="dropdown-item" href="intent:${encoded_url}#Intent;component=idm.internet.download.manager/idm.internet.download.manager.Downloader;S.title=${encoded_name_safe};end">1DM (Free)</a>
                             </div>
                         </div>
                     </div>
@@ -2447,14 +2447,14 @@ function generateGDFlixLink(fileId) {
         });
     });
 }
-// Update the generatePixeldrainLink function to call the worker endpoint
-function generatePixeldrainLink(fileId, fileName) {
+// Update the generateGKYFILEHOSTLink function to call the worker endpoint
+function generateGKYFILEHOSTLink(fileId, fileName) {
     return new Promise((resolve, reject) => {
-        console.log('Pixeldrain - Received fileId:', fileId);
-        console.log('Pixeldrain - Received fileName:', fileName);
+        console.log('GKYFILEHOST - Received fileId:', fileId);
+        console.log('GKYFILEHOST - Received fileName:', fileName);
         
         if (!fileId) {
-            console.error('Pixeldrain - No file ID provided');
+            console.error('GKYFILEHOST - No file ID provided');
             alert('Error: No file ID provided');
             reject(new Error('No file ID provided'));
             return;
@@ -2463,7 +2463,7 @@ function generatePixeldrainLink(fileId, fileName) {
         fileId = String(fileId).trim();
         
         if (fileId === '') {
-            console.error('Pixeldrain - Empty file ID');
+            console.error('GKYFILEHOST - Empty file ID');
             alert('Error: Empty file ID');
             reject(new Error('Empty file ID'));
             return;
@@ -2478,20 +2478,20 @@ function generatePixeldrainLink(fileId, fileName) {
                     fileName = titleElement.textContent.trim();
                 }
             } catch (e) {
-                console.log('Pixeldrain - Could not extract filename from page');
+                console.log('GKYFILEHOST - Could not extract filename from page');
             }
         }
         
-        console.log('Pixeldrain - Final fileName:', fileName || 'download');
-        console.log('Pixeldrain - Requesting link generation from worker...');
-        console.log('Pixeldrain - File ID being sent:', fileId);
+        console.log('GKYFILEHOST - Final fileName:', fileName || 'download');
+        console.log('GKYFILEHOST - Requesting link generation from worker...');
+        console.log('GKYFILEHOST - File ID being sent:', fileId);
         
         // Show a loading indicator (you can customize this)
-        const loadingMsg = 'Uploading to Pixeldrain... Please wait...';
+        const loadingMsg = 'Generating GKYFILEHOST link... Please wait...';
         console.log(loadingMsg);
         
-        // Make request to worker endpoint
-        fetch('/pixeldrain', {
+        // Make request to worker endpoint (FIXED: Changed from /generate-gkyfilehost to /gkyfilehost)
+        fetch('/gkyfilehost', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -2502,8 +2502,8 @@ function generatePixeldrainLink(fileId, fileName) {
             })
         })
         .then(response => {
-            console.log('Pixeldrain - Response status:', response.status);
-            console.log('Pixeldrain - Response OK:', response.ok);
+            console.log('GKYFILEHOST - Response status:', response.status);
+            console.log('GKYFILEHOST - Response OK:', response.ok);
             
             // Try to get the response body even if status is not OK
             return response.json().then(data => {
@@ -2516,57 +2516,57 @@ function generatePixeldrainLink(fileId, fileName) {
             });
         })
         .then(result => {
-            console.log('Pixeldrain - Full response:', result);
+            console.log('GKYFILEHOST - Full response:', result);
             
             if (!result.ok) {
                 // Show specific error from server
                 const errorMsg = result.data.error || result.data.details || `HTTP error! status: ${result.status}`;
-                console.error('Pixeldrain - Server error:', errorMsg);
+                console.error('GKYFILEHOST - Server error:', errorMsg);
                 throw new Error(errorMsg);
             }
             
             const data = result.data;
-            console.log('Pixeldrain - Worker response data:', data);
+            console.log('GKYFILEHOST - Worker response data:', data);
             
-            if (data.success && data.link) {
-                const pixeldrainLink = data.link;
-                console.log('Pixeldrain - Generated link:', pixeldrainLink);
+            if (data.success && (data.link || data.gkyfilehost_link)) {
+                const gkyLink = data.link || data.gkyfilehost_link;
+                console.log('GKYFILEHOST - Generated link:', gkyLink);
                 
                 // Validate the link format
-                if (!pixeldrainLink.includes('pixeldrain')) {
-                    console.warn('Pixeldrain - Warning: Link does not contain pixeldrain domain');
+                if (!gkyLink.includes('gkyfilehost')) {
+                    console.warn('GKYFILEHOST - Warning: Link does not contain gkyfilehost domain');
                 }
                 
-                // Open the Pixeldrain link directly in a new tab
-                window.open(pixeldrainLink, '_blank');
+                // Open the GKYFILEHOST link directly in a new tab
+                window.open(gkyLink, '_blank');
                 
                 // Show success message
-                console.log('✅ Pixeldrain link generated successfully!');
+                console.log('✅ GKYFILEHOST link generated successfully!');
                 
-                resolve(pixeldrainLink);
+                resolve(gkyLink);
             } else {
-                const errorMsg = data.error || 'Failed to generate Pixeldrain link - no link in response';
-                console.error('Pixeldrain - Error from server:', errorMsg);
+                const errorMsg = data.error || 'Failed to generate GKYFILEHOST link - no link in response';
+                console.error('GKYFILEHOST - Error from server:', errorMsg);
                 throw new Error(errorMsg);
             }
         })
         .catch(error => {
-            console.error('Pixeldrain Error:', error);
-            console.error('Pixeldrain Error stack:', error.stack);
+            console.error('GKYFILEHOST Error:', error);
+            console.error('GKYFILEHOST Error stack:', error.stack);
             
             // Show user-friendly error message
-            let userMessage = 'Failed to upload to Pixeldrain';
+            let userMessage = 'Failed to generate GKYFILEHOST link';
             
-            if (error.message.includes('Failed to fetch file from Google Drive')) {
-                userMessage += '\n\n⚠️ Could not access the Google Drive file.\n\nPossible solutions:\n' +
-                             '1. Check if the file ID is correct\n' +
-                             '2. Ensure the file is publicly accessible\n' +
-                             '3. Try again in a few moments';
+            if (error.message.includes('Failed to login')) {
+                userMessage += '\n\n⚠️ Login to GKYFILEHOST failed.\n\nPossible solutions:\n' +
+                             '1. Check your GKYFILEHOST account credentials\n' +
+                             '2. Make sure your account is active\n' +
+                             '3. Check Cloudflare Worker logs for details';
             } else if (error.message.includes('HTTP error! status: 500')) {
                 userMessage += '\n\nServer error (500).\n\nPlease check:\n' +
                              '1. Cloudflare Worker logs for details\n' +
-                             '2. The file size (max 10GB)\n' +
-                             '3. Try again in a few moments';
+                             '2. GKYFILEHOST credentials are correct\n' +
+                             '3. The file ID is valid';
             } else if (error.message.includes('HTTP error! status: 400')) {
                 userMessage += '\n\nBad request (400). The file ID might be invalid.';
             } else if (error.message.includes('Failed to fetch')) {
@@ -2582,34 +2582,27 @@ function generatePixeldrainLink(fileId, fileName) {
 }
 
 // Handler for Download button to open GKYFILEHOST link
-$(document).on('click', '.download-via-pixeldrain', function(e) {
+$(document).on('click', '.download-via-gkyfilehost', function(e) {
     e.preventDefault();
-    e.stopPropagation();
-    
     const fileId = $(this).data('file-id');
     const button = $(this);
     
-    console.log('========================================');
-    console.log('Pixeldrain Download button clicked!');
-    console.log('File ID:', fileId);
-    console.log('Button element:', this);
-    console.log('========================================');
+    console.log('Download button clicked, fileId:', fileId);
     
     if (!fileId) {
-        console.error('No file ID found!');
         alert('Error: No file ID found');
-        return false;
+        return;
     }
     
     // Show loading state
     const originalHtml = button.html();
-    button.prop('disabled', true).html('<i class="fas fa-spinner fa-spin fa-fw"></i> Uploading to Pixeldrain...');
+    button.prop('disabled', true).html('<i class="fas fa-spinner fa-spin fa-fw"></i> Processing...');
     
-    // Call Pixeldrain function
-    generatePixeldrainLink(fileId)
+    // Call GKYFILEHOST function
+    generateGKYFILEHOSTLink(fileId)
         .then((link) => {
             button.prop('disabled', false).html(originalHtml);
-            console.log('✅ Successfully opened Pixeldrain link:', link);
+            console.log('Successfully opened GKYFILEHOST link:', link);
         })
         .catch((error) => {
             button.html('<i class="fas fa-times fa-fw"></i> Failed');
@@ -2618,8 +2611,6 @@ $(document).on('click', '.download-via-pixeldrain', function(e) {
             }, 2000);
             console.error('Download error:', error);
         });
-    
-    return false; // Extra safety to prevent default
 });
 
 
