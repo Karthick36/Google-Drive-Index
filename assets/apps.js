@@ -882,8 +882,8 @@ function render_search_result_list() {
 	var searchBar = `
 	<form class="d-flex mt-2" method="get" action="/${window.current_drive_order}:search">
 		<div class="input-group">
-			<input class="form-control bg-white text-dark" name="q" type="search" placeholder="Search Movies here" aria-label="Search" value="${model.q}" style="border-right:0;" required>
-			  <button class="btn btn-success" type="submit" style="border-color: rgba(140, 130, 115, 0.13); border-left:0;">
+			<input class="form-control" name="q" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search Movies here" aria-label="Search" value="${model.q}" style="border-right:0; background:#fff !important; color:#111 !important; -webkit-user-select:text !important; user-select:text !important; pointer-events:auto !important;" required>
+			<button class="btn btn-success" type="submit" style="border-color: rgba(140, 130, 115, 0.13); border-left:0;">
 				<i class="fas fa-search" style="margin: 0"></i>
 			</button>
 		</div>
