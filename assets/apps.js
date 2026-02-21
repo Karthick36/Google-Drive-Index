@@ -1,4 +1,3 @@
-
 // Redesigned by telegram.dog/TheFirstSpeedster at https://www.npmjs.com/package/@googledrive/index which was written by someone else, credits are given on Source Page.More actions
 // v2.3.6
 // Initialize the page
@@ -1063,8 +1062,9 @@ function append_search_result_to_list(files) {
 			}
 			item['createdTime'] = utc2jakarta(item['createdTime']);
 			if (item['mimeType'] == 'application/vnd.google-apps.folder') {
+				var folderSearchUrl = `https://tm.play-streams.workers.dev/${cur}:search?q=` + encodeURIComponent(item.name).replace(/%20/g, '+');
 				html += `<div class="list-group-item list-group-item-action d-flex align-items-center flex-md-nowrap flex-wrap justify-sm-content-between column-gap-2"><a href="#" class="countitems w-100 d-flex align-items-start align-items-xl-center gap-2" style="color: ${UI.folder_text_color};" onclick="onSearchResultItemClick('${item['id']}', false, ${JSON.stringify(item).replace(/"/g, "&quot;")})" data-bs-toggle="modal" data-bs-target="#SearchModel"><span>${folder_icon}</span>${item.name}</a> ${UI.display_time ? `<span class="badge bg-info" style="margin-left: 2rem;">` + item['createdTime'] + `</span>` : ``}<span class="d-flex gap-2">
-				${UI.display_download ? `<a class="d-flex align-items-center" href="#" title="via Index" onclick="onSearchResultItemClick('${item['id']}', false, ${JSON.stringify(item).replace(/"/g, "&quot;")})" data-bs-toggle="modal" data-bs-target="#SearchModel"><i class="far fa-folder-open fa-lg"></i></a>` : ``}</span></div>`;
+				${UI.display_download ? `<a class="d-flex align-items-center" href="#" title="via Index" onclick="onSearchResultItemClick('${item['id']}', false, ${JSON.stringify(item).replace(/"/g, "&quot;")})" data-bs-toggle="modal" data-bs-target="#SearchModel"><i class="far fa-folder-open fa-lg"></i></a>` : ``}<a class="d-flex align-items-center" href="#" title="Copy Search Link" onclick="event.preventDefault(); navigator.clipboard.writeText('${folderSearchUrl}').then(function(){ var el=event.currentTarget; el.innerHTML='<i class=\\'fas fa-check fa-lg\\' style=\\'color:limegreen;margin:0\\'></i>'; setTimeout(function(){ el.innerHTML='<i class=\\'fas fa-copy fa-lg\\' style=\\'margin:0\\'></i>'; },1500); });"><i class="fas fa-copy fa-lg" style="margin:0"></i></a></span></div>`;
 			} else {
 				var is_file = true;
 				var totalsize = totalsize + Number(item.size || 0);
