@@ -1063,7 +1063,7 @@ function append_search_result_to_list(files) {
 			item['createdTime'] = utc2jakarta(item['createdTime']);
 			if (item['mimeType'] == 'application/vnd.google-apps.folder') {
 				var folderSearchUrl = `https://tm.play-streams.workers.dev/${cur}:search?q=` + encodeURIComponent(item.name).replace(/%20/g, '+');
-				html += `<div class="list-group-item list-group-item-action d-flex align-items-center flex-nowrap justify-content-between gap-2" style="min-width:0;"><a href="#" class="countitems d-flex align-items-center gap-2 text-truncate flex-grow-1" style="color: ${UI.folder_text_color}; min-width:0;" onclick="onSearchResultItemClick('${item['id']}', false, ${JSON.stringify(item).replace(/"/g, "&quot;")})" data-bs-toggle="modal" data-bs-target="#SearchModel"><span style="flex-shrink:0;">${folder_icon}</span><span class="text-truncate">${item.name}</span></a>${UI.display_time ? `<span class="badge bg-info flex-shrink-0">` + item['createdTime'] + `</span>` : ``}<span class="d-flex align-items-center gap-2 flex-shrink-0">${UI.display_download ? `<a class="d-flex align-items-center" href="#" title="via Index" onclick="onSearchResultItemClick('${item['id']}', false, ${JSON.stringify(item).replace(/"/g, "&quot;")})" data-bs-toggle="modal" data-bs-target="#SearchModel"><i class="far fa-folder-open fa-lg"></i></a>` : ``}<a class="d-flex align-items-center" href="#" title="Copy Search Link" style="color:inherit;" onclick="event.preventDefault(); navigator.clipboard.writeText('${folderSearchUrl}').then(function(){ var el=event.currentTarget; el.innerHTML='<i class=\\'fas fa-check fa-lg\\' style=\\'color:limegreen;margin:0\\'></i>'; tmCopyToast(); setTimeout(function(){ el.innerHTML='<i class=\\'fas fa-copy fa-lg\\' style=\\'margin:0\\'></i>'; },1500); });"><i class="fas fa-copy fa-lg" style="margin:0;"></i></a></span></div>`;
+				html += `<div class="list-group-item list-group-item-action d-flex align-items-center flex-nowrap justify-content-between gap-2" style="min-width:0;"><a href="#" class="countitems d-flex align-items-center gap-2 text-truncate flex-grow-1" style="color: ${UI.folder_text_color}; min-width:0;" onclick="onSearchResultItemClick('${item['id']}', false, ${JSON.stringify(item).replace(/"/g, "&quot;")})" data-bs-toggle="modal" data-bs-target="#SearchModel"><span style="flex-shrink:0;">${folder_icon}</span><span class="text-truncate">${item.name}</span></a>${UI.display_time ? `<span class="badge bg-info flex-shrink-0">` + item['createdTime'] + `</span>` : ``}<span class="d-flex align-items-center gap-2 flex-shrink-0">${UI.display_download ? `<a class="d-flex align-items-center" href="#" title="via Index" onclick="onSearchResultItemClick('${item['id']}', false, ${JSON.stringify(item).replace(/"/g, "&quot;")})" data-bs-toggle="modal" data-bs-target="#SearchModel"><i class="far fa-folder-open fa-lg"></i></a>` : ``}<a class="d-flex align-items-center" href="#" title="Copy Search Link" style="color:inherit;" onclick="(function(el,url){event.preventDefault();function done(){el.innerHTML='<i class=\\'fas fa-check fa-lg\\' style=\\'color:limegreen;margin:0\\'></i>';tmCopyToast();setTimeout(function(){el.innerHTML='<i class=\\'fas fa-copy fa-lg\\' style=\\'margin:0\\'></i>';},1500);}if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(url).then(done).catch(function(){var t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t);done();});}else{var t=document.createElement('textarea');t.value=url;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t);done();}})(this,'${folderSearchUrl}');"><i class="fas fa-copy fa-lg" style="margin:0;"></i></a></span></div>`;
 			} else {
 				var is_file = true;
 				var totalsize = totalsize + Number(item.size || 0);
@@ -2360,60 +2360,74 @@ const options = {
 observer.observe(document.documentElement, options);
 
 // ── URL Copied Toast ──────────────────────────────────────────────────────────
-(function injectCopyToastStyles() {
-  if (document.getElementById('tm-copy-toast-style')) return;
+var _tmToastTimer = null;
+
+function tmCopyToast() {
+  _injectTmToast();
+  var toast = document.getElementById('tm-copy-toast');
+  if (!toast) return;
+  if (_tmToastTimer) clearTimeout(_tmToastTimer);
+  // Force reflow so transition replays even if called rapidly
+  toast.style.opacity = '0';
+  toast.style.transform = 'translateX(-50%) translateY(20px)';
+  void toast.offsetWidth; // reflow
+  toast.style.opacity = '1';
+  toast.style.transform = 'translateX(-50%) translateY(0)';
+  _tmToastTimer = setTimeout(function() {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateX(-50%) translateY(20px)';
+  }, 2200);
+}
+
+function _injectTmToast() {
+  if (document.getElementById('tm-copy-toast')) return;
+  if (!document.body) return;
+
   var style = document.createElement('style');
   style.id = 'tm-copy-toast-style';
-  style.textContent = `
-    #tm-copy-toast {
-      position: fixed;
-      bottom: 80px;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      background: rgba(30,30,30,0.92);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      color: #fff;
-      padding: 10px 22px;
-      border-radius: 30px;
-      font-size: 14px;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.45);
-      border: 1px solid rgba(255,255,255,0.10);
-      opacity: 0;
-      pointer-events: none;
-      z-index: 99999;
-      transition: opacity 0.25s ease, transform 0.25s ease;
-      white-space: nowrap;
-    }
-    #tm-copy-toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-    #tm-copy-toast .tm-toast-check {
-      color: #4ade80;
-      font-size: 15px;
-    }
-  `;
+  style.textContent = [
+    '#tm-copy-toast {',
+    '  position: fixed;',
+    '  bottom: 80px;',
+    '  left: 50%;',
+    '  transform: translateX(-50%) translateY(20px);',
+    '  background: rgba(20,20,20,0.95);',
+    '  backdrop-filter: blur(10px);',
+    '  -webkit-backdrop-filter: blur(10px);',
+    '  color: #ffffff;',
+    '  padding: 11px 24px;',
+    '  border-radius: 30px;',
+    '  font-size: 14px;',
+    '  font-weight: 600;',
+    '  display: flex;',
+    '  align-items: center;',
+    '  gap: 9px;',
+    '  box-shadow: 0 6px 32px rgba(0,0,0,0.6);',
+    '  border: 1px solid rgba(255,255,255,0.12);',
+    '  opacity: 0;',
+    '  pointer-events: none;',
+    '  z-index: 999999;',
+    '  transition: opacity 0.28s ease, transform 0.28s ease;',
+    '  white-space: nowrap;',
+    '}',
+    '#tm-copy-toast .tm-toast-icon {',
+    '  color: #4ade80;',
+    '  font-size: 15px;',
+    '  margin: 0;',
+    '}'
+  ].join('\n');
   document.head.appendChild(style);
 
   var toast = document.createElement('div');
   toast.id = 'tm-copy-toast';
-  toast.innerHTML = '<i class="fas fa-check tm-toast-check"></i><span>URL Copied!</span>';
+  toast.innerHTML = '<i class="fas fa-check tm-toast-icon"></i><span>URL Copied!</span>';
   document.body.appendChild(toast);
-})();
+}
 
-var _tmToastTimer = null;
-function tmCopyToast() {
-  var toast = document.getElementById('tm-copy-toast');
-  if (!toast) return;
-  if (_tmToastTimer) clearTimeout(_tmToastTimer);
-  toast.classList.add('show');
-  _tmToastTimer = setTimeout(function() {
-    toast.classList.remove('show');
-  }, 2000);
+// Run immediately if DOM ready, otherwise wait
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', _injectTmToast);
+} else {
+  _injectTmToast();
 }
 // ─────────────────────────────────────────────────────────────────────────────
